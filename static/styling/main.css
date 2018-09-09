@@ -1,0 +1,397 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,400i,700,700i|Inconsolata:400,700');
+@import url('/fonts/icomoon.ttf');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+}
+
+body {
+    margin: 0;
+}
+
+#root {
+    background-image: radial-gradient(#E2E2E2, #C2C2C2);
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, a, p, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, button, a.button {
+    font-family: 'Cabin', sans-serif;
+    font-weight: 700;
+}
+
+a, p, ul, ol, li, span {
+    font-family: 'Inconsolata', monospace;
+    font-weight: 400;
+}
+
+#root>.header {
+    background-image: radial-gradient(#FFFFFF, #EEEEEE);
+
+    height: 100px;
+    padding: 1rem;
+    box-shadow: 0 0 4px 0 #222222;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #000000;
+    text-decoration: none;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 100%;
+    margin-right: 0.5rem;
+}
+
+.logo .logo-copy h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* .logo .logo-copy span {
+    font-family: 'Cabin', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+} */
+
+nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* nav a.block {
+    font-family: 'Cabin', sans-serif;
+    font-weight: 700;
+} */
+
+a {
+    color: #FF8833;
+    font-weight: 700;
+    text-decoration: underline;
+
+    cursor: pointer;
+}
+
+a.block {
+    color: #FF8833;
+    font-weight: 700;
+
+    display: block;
+    margin: 1rem;
+}
+
+button, a.button {
+    background-image: radial-gradient(hsl(210, 78%, 54%), hsl(210, 78%, 34%));
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: block;
+    margin: 1rem;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid #E2E2E2;
+    border-radius: 1rem;
+
+    box-shadow: 0 0 1px 0 #222222;
+}
+
+button.secondary, a.button.secondary {
+    background-image: radial-gradient(hsl(25, 100%, 60%), hsl(25, 100%, 40%));
+}
+
+button.negative, a.button.negative {
+    background-image: radial-gradient(hsl(345, 100%, 45%), hsl(345, 100%, 25%));
+}
+
+img {
+    display: block;
+}
+
+.page {
+    padding: 1rem 2rem;
+    max-width: 880px;
+
+    flex-grow: 1;
+}
+
+.page h2, .page h3 {
+    margin-bottom: 1rem;
+}
+
+.page h2:first-child {
+    margin-top: 1rem;
+}
+
+.page p {
+    margin-bottom: 1rem;
+}
+
+.experiences {
+    display: flex;
+    flex-direction: column;
+}
+
+.experience {
+    background-image: radial-gradient(#FFFFFF, #EEEEEE);
+
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: 0 0 1px 0 #222222;
+
+    /** to contain floated image */
+    overflow: auto;
+}
+
+.experience img {
+    width: 150px;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+
+    float: right;
+}
+
+.contact-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contact-card {
+    background-image: radial-gradient(#FFFFFF, #EEEEEE);
+
+    width: 200px;
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: 0 0 1px 0 #222222;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-card img {
+    height: 75px;
+    margin-bottom: 1rem;
+}
+
+.contact-card span {
+    font-weight: 700;
+}
+
+.dialog {
+    background-image: radial-gradient(#E2E2E2, #C2C2C2);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    padding: 1rem;
+    border-radius: 1rem;
+    height: calc(100% - 3rem * 2);
+    width: calc(100% - 3rem * 2);
+    margin: 3rem;
+    box-shadow: 0 0 4px 0 #444444;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog>.header {
+    width: 100%;
+
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dialog>.header h2 {
+    margin-top: 0;
+}
+
+.dialog>.body {
+    flex-grow: 1;
+}
+
+.dialog[data-is-open="false"] {
+    display: none;
+}
+
+.dialog-layer {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    cursor: pointer;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+.dialog-layer[data-is-open="false"] {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .logo .logo-copy {
+        display: none;
+    }
+
+    .experience h3 {
+        text-align: center;
+    }
+
+    .experience img {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.slide-show {
+    background-image: radial-gradient(#FFFFFF, #EEEEEE);
+
+    width: 100%;
+    padding: 1rem;
+
+    overflow: auto;
+
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0 0 1px 0 #222222;
+}
+
+.slide-show .view {
+    background-image: radial-gradient(#EEEEEE, #CCCCCC);
+
+    padding: 0.5rem;
+    width: 100%;
+    min-height: 400px;
+
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+
+    box-shadow: 0 0 1px 0 #222222;
+
+    position: relative;
+}
+
+.slide-show .view img {
+    background-image: radial-gradient(#444444, #222222);
+
+    padding: 2rem;
+    max-width: 100%;
+
+    box-shadow: 0 0 1px 0 #222222;
+
+    object-fit: scale-down;
+
+    flex-grow: 1;
+}
+
+.slide-show .view button {
+    opacity: 0.75;
+}
+
+.slide-show .view button:hover {
+    opacity: 1;
+}
+
+.slide-show .view button.prev, .slide-show .view button.next {
+
+    padding: 0;
+    height: 60px;
+    width: 60px;
+
+    position: absolute;
+    top: calc(50% - 60px / 2);
+}
+
+.slide-show .view button.next {
+    right: 0;
+}
+
+.slide-show .view button.prev {
+    left: 0;
+}
+
+.slide-show .view button.open {
+    padding: 0.25rem 0.75rem;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.slide-show .thumbnails {
+    background-image: radial-gradient(#EEEEEE, #CCCCCC);
+
+    padding: 0.5rem;
+    width: 100%;
+    margin-top: 1rem;
+
+    box-shadow: 0 0 1px 0 #222222;
+
+    overflow-x: auto;
+
+    flex-shrink: 0;
+
+    display: flex;
+}
+
+.slide-show .thumbnails .thumbnail {
+    cursor: pointer;
+
+    margin: 0 0.25rem;
+    padding: 0.5rem;
+    height: 125px;
+
+    flex-shrink: 0;
+
+    background-image: radial-gradient(#DDDDDD, #BBBBBB);
+    box-shadow: 0 0 1px 0 #222222;
+
+    object-fit: scale-down;
+}
+
+.slide-show .thumbnails .thumbnail[data-is-active="true"] {
+    box-shadow: 0 0 4px 2px #2E8AE5;
+}
+
+.slide-show .thumbnails .thumbnail:first-child {
+    margin-left: auto;
+}
+
+.slide-show .thumbnails .thumbnail:last-child {
+    margin-right: auto;
+}
