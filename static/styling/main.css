@@ -102,6 +102,11 @@ h1 {
     transition-duration: 0.1s;
 }
 
+a.inline-link {
+    color: #0E8C73;
+    text-decoration: underline;
+}
+
 .block-links>a.block-link>i {
     margin-right: 1rem;
 }

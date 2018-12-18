@@ -13,7 +13,7 @@ export const Home = () => <div className="column-layout">
                 aspects of the development process.</p>
             <BlockLinks blockLinks={blockLinkList} />
         </div>
-        <p className="spider-text">This site won't track you, and you're free to check out its source code on Github!</p>
+        <p className="spider-text">This site won't track you, and you're free to <a className="inline-link" href="https://github.com/NathanRussellUK/nathanrussell" target="_blank">check out its source code</a> on Github!</p>
     </div>
 
     {/* Use the intersection observer with effect hook and cleanup on column two, and automate the animation delay */}
