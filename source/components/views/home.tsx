@@ -9,9 +9,8 @@ export const Home = () => <div className="column-layout">
         <div className="content">
             <p>A professional software/Web developer, passionate about working with the latest and greatest
                 technology.</p>
-            <p>Taking websites, mobile apps, and APIs from design to release has given me an appreciation of all
+            <p>Taking websites, mobile apps, and APIs from design to release has given me a strong working knowledge of most
                 aspects of the development process.</p>
-            <p>Something else here...</p>
             <BlockLinks blockLinks={blockLinkList} />
         </div>
         <p className="spider-text">This site won't track you, and you're free to check out its source code on Github!</p>
