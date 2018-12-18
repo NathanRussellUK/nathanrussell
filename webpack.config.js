@@ -6,6 +6,5 @@ module.exports = {
     output: {
         path: path.resolve("./static/scripts/"),
         filename: "bundle.js"
-    },
-    mode: "development"
+    }
 }

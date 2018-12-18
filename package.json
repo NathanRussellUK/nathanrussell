@@ -1,49 +1,38 @@
 {
-  "name": "web-template",
+  "name": "nathan-russell",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && webpack",
+    "build-dev": "tsc && webpack --mode=development",
     "start": "node distribution/server.js",
     "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NathanRussellUK/web-template.git"
+    "url": "git+https://git.heroku.com/nathanrussell.git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NathanRussellUK/web-template/issues"
-  },
-  "homepage": "https://github.com/NathanRussellUK/web-template#readme",
   "dependencies": {
     "express": "^4.16.3",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-router-redux": "^4.0.8",
-    "react-slider-swiper": "^2.0.6",
-    "react-swipe": "^5.1.1",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
     "webpack": "^4.16.1"
   },
   "devDependencies": {
     "@types/express": "^4.16.0",
-    "@types/react": "^16.4.6",
-    "@types/react-dom": "^16.0.6",
+    "@types/react": "^16.7.0-alpha.2",
+    "@types/react-dom": "^16.0.11",
     "@types/react-redux": "^6.0.4",
     "@types/react-router": "^4.0.29",
-    "@types/react-router-redux": "^5.0.15",
-    "@types/react-swipe": "^5.0.3",
-    "@types/redux": "^3.6.0",
-    "@types/redux-saga": "^0.10.5",
-    "typescript": "2.8.3",
+    "typescript": "3.2.2",
     "webpack-cli": "^3.1.0"
   }
 }

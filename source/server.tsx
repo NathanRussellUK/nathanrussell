@@ -13,7 +13,7 @@ import { getAppliedMiddleware } from "./redux/middlewares";
 const initServer = () => {
     const server = express()
 
-    const port = process.env.PORT || 8080
+    const port = process.env.PORT || 3000
 
     server.use(express.static("static"))
 
@@ -30,20 +30,23 @@ const initServer = () => {
             </StaticRouter>
         </Provider>
         
-        const appHtml = `<html>
-        <head>
-            <title>Web Template</title>
-            <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-            <link rel="stylesheet" href="/styling/main.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.css">        </head>
-        <body>
-            <div id="root">
-                ${ReactDOMServer.renderToString(ServerApp)}
-            </div>
-            <script src="/scripts/bundle.js"></script>
-            <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-        </body>
-        </html>`;
+        const appHtml = `
+<html>
+<head>
+    <title>Nathan Russell</title>
+    <link rel="shortcut icon" type="image/ico" href="images/logo.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="styling/main.css">
+    </head>
+<body>
+    <div id="root">
+        ${ReactDOMServer.renderToString(ServerApp)}
+    </div>
+    <script src="/scripts/bundle.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+</body>
+</html>`;
     
         res.send(appHtml)
     });

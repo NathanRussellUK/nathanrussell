@@ -1,5 +1,4 @@
 import { Action, combineReducers, ReducersMapObject, AnyAction, Reducer } from "redux"
-import { routerReducer, RouterState } from "react-router-redux";
 import { systemDuckEggs, userDuckEggs } from "./duck-eggs/index";
 import { resetUserStateReducerFactory } from "./reset-user-state";
 
@@ -14,9 +13,11 @@ const getDuckEggReducers = <S>(duckEggs) => Object.keys(duckEggs).reduce(
 
 namespace User {
   // Defines your user state type automatically, using the values returned by your duck reducers
-  export type UserState = {
-    [P in keyof typeof userDuckEggs]: ReturnType<typeof userDuckEggs[P]["reducer"]>
-  }
+  // export type UserState = {
+  //   [P in keyof typeof userDuckEggs]: ReturnType<typeof userDuckEggs[P]["reducer"]>
+  // }
+
+  export type UserState = {}
 
   const reducers = getDuckEggReducers<UserState>(userDuckEggs)
 
@@ -47,12 +48,10 @@ namespace System {
 export interface State {
   user: User.UserState;
   system: System.SystemState;
-  routing: RouterState;
 }
 
 // The single reducer for your redux store's entire state
 export const reducer = combineReducers({
   system: System.reducer,
-  user: User.reducer,
-  routing: routerReducer
+  user: User.reducer
 })

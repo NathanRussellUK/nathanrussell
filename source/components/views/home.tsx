@@ -1,60 +1,24 @@
 import * as React from "react"
-import { connect } from "react-redux";
-import { State } from "../../redux/state";
-import { Dispatch } from "redux";
-import { getRandomNumber } from "../../redux/duck-eggs/random-number";
-import { PurePlanetExperience, PurePlanetGallery } from "../pure-planet";
+import { Features } from "../features";
+import { BlockLinks } from "../block-links";
+import { featureList } from "../../feature-list";
+import { blockLinkList } from "../../block-link-list";
 
-export const Home = connect(
-    (state: State) => ({
-        randomNumber: state.system.randomNumber
-    }),
-    (dispatch: Dispatch) => ({
-        getRandomNumber: () => { dispatch(getRandomNumber.create({})) }
-    })
-)(class extends React.Component<{
-    randomNumber: State["system"]["randomNumber"]
-    getRandomNumber: () => void
-}, {
-    purePlanetGalleryIsOpen: boolean
-}> {
-    constructor(props) {
-        super(props)
+export const Home = () => <div className="column-layout">
+    <div className="column-one">
+        <div className="content">
+            <p>A professional software/Web developer, passionate about working with the latest and greatest
+                technology.</p>
+            <p>Taking websites, mobile apps, and APIs from design to release has given me an appreciation of all
+                aspects of the development process.</p>
+            <p>Something else here...</p>
+            <BlockLinks blockLinks={blockLinkList} />
+        </div>
+        <p className="spider-text">This site won't track you, and you're free to check out its source code on Github!</p>
+    </div>
 
-        this.state = {
-            purePlanetGalleryIsOpen: false
-        }
-    }
-
-    componentDidMount() {
-        this.props.getRandomNumber()
-    }
-
-    openPurePlanetGallery = () => {
-        this.setState({ purePlanetGalleryIsOpen: true })
-    }
-
-    closePurePlanetGallery = () => {
-        this.setState({ purePlanetGalleryIsOpen: false })
-    }
-    
-    render() {
-        return <>
-            <h2>Experience</h2>
-            {/* <p>Random Number: {this.props.randomNumber}</p> */}
-            <PurePlanetGallery
-                isOpen={this.state.purePlanetGalleryIsOpen}
-                onClose={this.closePurePlanetGallery}
-            />
-            <PurePlanetExperience openGallery={this.openPurePlanetGallery} />
-            <div className="experiences">
-                <div className="experience">
-                    <h3>Rocketmakers</h3>
-                    <img src="/images/rocketmakers.jpg" />
-                    <p>Our evolving tech stack has continuously challenged me to write better code, with the latest and greatest technologies.</p>
-                    <p>We've generally worked with an informal version of scrum, meaning I've had to take responsibility for firming up task requirements, and keeping clients up-to-date with progress.</p>
-                </div>
-            </div>
-        </>
-    }
-})
+    {/* Use the intersection observer with effect hook and cleanup on column two, and automate the animation delay */}
+    <div className="column-two">
+        <Features features={featureList} />
+    </div>
+</div>
