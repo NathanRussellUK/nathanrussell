@@ -33,6 +33,7 @@ body, #root {
     box-shadow: 4px 0 4px rgba(0, 0, 0, 0.5);
 
     display: flex;
+    flex-shrink: 0;
     align-items: center;
 
     z-index: 1;
