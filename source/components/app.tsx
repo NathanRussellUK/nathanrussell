@@ -11,8 +11,10 @@ import { State } from "../redux/state";
 export const App = (props: {}) => <>
     <div className="header">
         <img className="logo" src="images/logo.svg" alt="Logo" />
-        <h1>Nathan Russell</h1>
-        <div className="sub-heading">Professional Software/Web Developer</div>
+        <div>
+            <h1>Nathan Russell</h1>
+            <div className="sub-heading">Professional Software/Web Developer</div>
+        </div>
     </div>
     <Switch>
         <Route exact path="/" component={Home} />
