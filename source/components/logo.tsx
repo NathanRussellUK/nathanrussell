@@ -6,11 +6,8 @@ const getLogoClass = (pathname: string) => {
         case "/": {
             return "work"
         }
-        case "/politics": {
-            return "politics"
-        }
         default: {
-            return "default"
+            return "politics"
         }
     }
 }

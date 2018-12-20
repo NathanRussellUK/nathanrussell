@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { Link } from "react-router-dom";
+
 export interface BlockLinkProps {
     id: string;
     href: string;
@@ -7,6 +9,15 @@ export interface BlockLinkProps {
     text: string;
     big?: boolean;
 }
+
+export const BlockLinkInternal = (props: BlockLinkProps) => <Link
+    className={`block-link${props.big ? " big" : ""}`}
+    to={props.href}
+>
+    <i className={props.iconClass}></i>
+    {props.text}
+</Link>
+
 
 const BlockLink = (props: BlockLinkProps) => <a
     className={`block-link${props.big ? " big" : ""}`}
