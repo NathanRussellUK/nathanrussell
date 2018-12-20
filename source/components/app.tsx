@@ -1,22 +1,25 @@
 import * as React from "react"
-import { Component } from "react"
-import { render } from "react-dom"
-import { Provider } from "react-redux"
-import { Route, Switch } from "react-router-dom"
+import { RouteComponentProps, withRouter } from "react-router"
+import { Link, Route, Switch } from "react-router-dom"
 
+import { Logo } from "./logo"
 import { Home } from "./views/home"
-import { Store } from "redux";
-import { State } from "../redux/state";
 
-export const App = (props: {}) => <>
+export const App = withRouter((props: RouteComponentProps) => <>
     <div className="header">
-        <img className="logo" src="images/logo.svg" alt="Logo" />
-        <div>
-            <h1>Nathan Russell</h1>
-            <div className="sub-heading">Professional Software/Web Developer</div>
+        <div className="header-main">
+            <Logo />
+            <div>
+                <h1>Nathan Russell</h1>
+                <div className="sub-heading">Professional Software/Web Developer</div>
+            </div>
         </div>
+        <nav>
+            {props.location.pathname === "/politics" && <Link to="/" className="fas fa-briefcase fa-2x work" />}
+            {props.location.pathname === "/" && <Link to="/politics" className="fas fa-bullhorn fa-2x politics" />}
+        </nav>
     </div>
     <Switch>
         <Route exact path="/" component={Home} />
     </Switch>
-</>
+</>)

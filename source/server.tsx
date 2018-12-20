@@ -1,26 +1,26 @@
 import * as express from "express"
-import * as React from "react";
-import * as ReactDOMServer from "react-dom/server";
+import * as React from "react"
+import * as ReactDOMServer from "react-dom/server"
+import { Provider } from "react-redux"
+import { StaticRouter } from "react-router"
+import { AnyAction, createStore } from "redux"
 
+import { App } from "./components/app"
+import { getAppliedMiddleware } from "./redux/middlewares"
+import { reducer, State } from "./redux/state"
 
-import { Provider } from "react-redux";
-import { StaticRouter, Redirect } from "react-router";
-import { App } from "./components/app";
-import { createStore, AnyAction } from "redux";
-import { State, reducer } from "./redux/state";
-import { getAppliedMiddleware } from "./redux/middlewares";
 
 const initServer = () => {
     const server = express()
 
-    const port = process.env.PORT || 3000
+    const port = process.env.PORT || 4040
 
     server.use(express.static("static"))
 
     server.use("*", (req, res) => {
         const context = {}
         const store = createStore<State, AnyAction, any, any>(reducer, getAppliedMiddleware());
-    
+
         const ServerApp = <Provider store={store}>
             <StaticRouter
                 location={req.url}
@@ -29,7 +29,7 @@ const initServer = () => {
                 <App />
             </StaticRouter>
         </Provider>
-        
+
         const appHtml = `
 <html>
 <head>
@@ -66,7 +66,7 @@ const initServer = () => {
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,IntersectionObserverEntry,fetch,Promise"></script>
 </body>
 </html>`;
-    
+
         res.send(appHtml)
     });
 
