@@ -3,6 +3,7 @@ import { RouteComponentProps, withRouter } from "react-router"
 import { Link, Route, Switch } from "react-router-dom"
 
 import { Logo } from "./logo"
+import { AirQualityWalcotParade } from "./views/articles/article_air-quality-walcot-parade"
 import { Home } from "./views/home"
 import { Politics } from "./views/politics"
 
@@ -12,7 +13,7 @@ export const App = withRouter((props: RouteComponentProps) => <>
             <Logo />
             <div>
                 <h1>Nathan Russell</h1>
-                <div className="sub-heading">Professional Software/Web Developer</div>
+                <div className="sub-heading">{props.location.pathname === "/" ? "Professional Software/Web Developer" : "Walcot Community Campaigner"}</div>
             </div>
         </Link>
         <nav>
@@ -23,5 +24,6 @@ export const App = withRouter((props: RouteComponentProps) => <>
     <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/politics" component={Politics} />
+        <Route exact path="/politics/articles/concerns-over-air-quality-research-at-walcot-parade" component={AirQualityWalcotParade} />
     </Switch>
 </>)

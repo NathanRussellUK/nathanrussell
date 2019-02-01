@@ -1,13 +1,20 @@
-import * as React from "react";
-import { BlockLinkInternal } from "../block-links";
+import * as React from "react"
+
+import { BlockLinkInternal } from "../block-links"
 
 export const Politics = () => <div className="column-layout politics">
     <div className="column-one">
         <BlockLinkInternal
-            id="air-quality-consultation"
-            href="/articles/air-quality-consultation"
-            iconClass="fas fa-lg fa-newspaper"
-            text="Air Quality Consultation"
+            id="concerns-over-air-quality-research-at-walcot-parade"
+            href="/politics/articles/concerns-over-air-quality-research-at-walcot-parade"
+            iconClass="fas fa-lg fa-envelope"
+            text="Concerns Over Air Quality Research at Walcot Parade"
+        />
+        <BlockLinkInternal
+            id="clean-air-zone-consultation-submission"
+            href="/politics/articles/clean-air-zone-consultation-submission"
+            iconClass="fas fa-lg fa-file-alt"
+            text="Clean Air Zone Consultation Submission"
         />
     </div>
     <div className="column-two">

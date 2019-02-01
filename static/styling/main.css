@@ -25,10 +25,18 @@ body, #root {
     margin: 0;
 }
 
-p {
+p, li {
     font-size: 1.3rem;
     margin: 0;
     margin-bottom: 1.3rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 2.6rem;
 }
 
 .header {
@@ -239,6 +247,28 @@ a.block-link>i {
     opacity: 0;
     animation: fade-in 1.25s;
     animation-fill-mode: forwards;
+}
+
+.article {
+    max-width: 1024px;
+    padding: 3rem;
+    margin: auto;
+}
+
+.article .article-meta {
+    text-align: center;
+    font-size: 1rem;
+    font-style: italic;
+
+    margin-bottom: 2.6rem;
+}
+
+.article img {
+    float: right;
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+    margin: 1.3rem;
 }
 
 @media (max-width: 950px) {
