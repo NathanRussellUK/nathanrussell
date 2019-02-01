@@ -25,29 +25,95 @@ body, #root {
     margin: 0;
 }
 
+p, li {
+    font-size: 1.3rem;
+    margin: 0;
+    margin-bottom: 1.3rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 2.6rem;
+}
+
 .header {
     background-color: #F8F8F8;
 
     padding: 15px;
     width: 100%;
-    box-shadow: 4px 0 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 
     display: flex;
     flex-shrink: 0;
     align-items: center;
+    justify-content: space-between;
 
     z-index: 1;
 }
 
-.header>.logo {
+.header>a.header-main {
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+    text-decoration: none;
+}
+
+.header>a.header-main>.logo {
     float: left;
     height: 60px;
     width: 60px;
     margin-right: 15px;
 }
 
-h1 {
+.header>a.header-main>.logo>path {
+    transition-property: fill;
+    transition-duration: 0.5s;
+}
+
+.header>a.header-main>.logo>path.work {
+    fill: #0E8C73;
+}
+
+.header>a.header-main>.logo>path.politics {
+    fill: #8C0E0E;
+}
+
+.header>a.header-main>.logo>path.default {
+    fill: #444444;
+}
+
+.header>.header-main>div>h1 {
     margin: 0;
+}
+
+.header>nav>a {
+    color: #888888;
+    text-decoration: none;
+
+    padding: 20px;
+    border: 1px solid #cccccc;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    margin-left: 1rem;
+
+    transition-property: color, background-color, box-shadow;
+    transition-duration: 0.1s;
+}
+
+.header>nav>a:hover {
+    background-color: #e8e8e8;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+}
+
+.header>nav>a.work:hover {
+    color: #0E8C73;
+}
+
+.header>nav>a.politics:hover {
+    color: #8C0E0E;
 }
 
 .column-layout {
@@ -67,7 +133,17 @@ h1 {
     min-width: 475px;
 }
 
-.column-one {
+.politics .column-one {
+    background-color: #FFF2F2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    padding: 50px;
+}
+
+.work .column-one {
     background-color: #F2FFFC;
 
     display: flex;
@@ -77,19 +153,17 @@ h1 {
     padding: 50px;
 }
 
-.column-one>.content p {
-    font-size: 1.3rem;
-    margin: 0;
-    margin-bottom: 1.3rem;
-}
-
 .block-links {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.block-links>a.block-link {
+a.inline-link {
+    text-decoration: underline;
+}
+
+a.block-link {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -110,18 +184,27 @@ h1 {
     transition-duration: 0.1s;
 }
 
-a.inline-link {
-    color: #0E8C73;
-    text-decoration: underline;
-}
-
-.block-links>a.block-link>i {
+a.block-link>i {
     margin-right: 1rem;
 }
 
-.block-links>a.block-link:hover {
+.work a.inline-link {
+    color: #0E8C73;
+}
+
+.politics a.inline-link {
+    color: #8C0E0E;
+}
+
+.work a.block-link:hover {
     border: 1px solid #0E8C73;
     background-color: #0E8C73;
+    color: #ffffff;
+}
+
+.politics a.block-link:hover {
+    border: 1px solid #8C0E0E;
+    background-color: #8C0E0E;
     color: #ffffff;
 }
 
@@ -166,6 +249,29 @@ a.inline-link {
     animation-fill-mode: forwards;
 }
 
+.article {
+    max-width: 1024px;
+    padding: 3rem;
+    margin: auto;
+}
+
+.article .article-meta {
+    text-align: center;
+    font-size: 1rem;
+    font-style: italic;
+
+    margin-bottom: 2.6rem;
+}
+
+.article img {
+    float: right;
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+    margin: 1.3rem;
+    max-width: 100%;
+}
+
 @media (max-width: 950px) {
     body,
     #root {
@@ -173,16 +279,16 @@ a.inline-link {
         height: auto;
     }
 
-    .header>.logo {
+    .header>.header-main>.logo {
         height: 50px;
         width: 50px;
     }
 
-    .header>div>h1 {
+    .header>.header-main>div>h1 {
         font-size: 1.5rem;
     }
 
-    .header>div>.sub-heading {
+    .header>.header-main>div>.sub-heading {
         font-size: 0.9rem;
         font-weight: normal;
     }
@@ -211,8 +317,16 @@ a.inline-link {
         flex-direction: column;
     }
 
-    .block-links>a.block-link {
+    a.block-link {
         flex-grow: 1;
         margin-right: 0;
+    }
+
+    .article img {
+        float: none;
+        width: 400px;
+        height: 400px;
+        object-fit: contain;
+        margin: 1.3rem 0;
     }
 }

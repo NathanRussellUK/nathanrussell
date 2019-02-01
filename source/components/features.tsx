@@ -1,8 +1,9 @@
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 export interface FeatureProps {
     id: string;
-    href: string;
+    to: string;
     src: string;
     alt: string;
     animationDelay?: string;
@@ -26,7 +27,7 @@ const Feature = (props: FeatureProps) => {
 
     return <a
         className="feature"
-        href={props.href}
+        href={props.to}
         target="_blank"
         ref={featureRef}
     >

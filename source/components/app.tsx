@@ -1,22 +1,20 @@
 import * as React from "react"
-import { Component } from "react"
-import { render } from "react-dom"
-import { Provider } from "react-redux"
-import { Route, Switch } from "react-router-dom"
+import { Router, Route } from "react-router"
 
+import { Logo } from "./logo"
+import { AirQualityWalcotParade } from "./views/articles/article_air-quality-walcot-parade"
 import { Home } from "./views/home"
-import { Store } from "redux";
-import { State } from "../redux/state";
+import { Politics } from "./views/politics"
+import { CAZConsultationSubmission } from './views/articles/article_caz-consultation-submission';
+import { Shell } from './views/shell';
 
-export const App = (props: {}) => <>
-    <div className="header">
-        <img className="logo" src="images/logo.svg" alt="Logo" />
-        <div>
-            <h1>Nathan Russell</h1>
-            <div className="sub-heading">Professional Software/Web Developer</div>
-        </div>
-    </div>
-    <Switch>
-        <Route exact path="/" component={Home} />
-    </Switch>
-</>
+export const routes = <Route component={Shell}>
+    <Route path="/" component={Home} />
+    <Route path="/politics" component={Politics} />
+    <Route path="/politics/articles/concerns-over-air-quality-research-at-walcot-parade" component={AirQualityWalcotParade} />
+    <Route path="/politics/articles/clean-air-zone-consultation-submission" component={CAZConsultationSubmission} />
+</Route>
+
+export const App = () => <Router>
+    {routes}
+</Router>
