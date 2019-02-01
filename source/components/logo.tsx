@@ -1,5 +1,5 @@
 import * as React from "react"
-import { RouteComponentProps, withRouter } from "react-router-dom"
+import { withRouter, RouteComponentProps, WithRouterProps } from "react-router";
 
 const getLogoClass = (pathname: string) => {
     switch (pathname) {
@@ -12,11 +12,7 @@ const getLogoClass = (pathname: string) => {
     }
 }
 
-interface LogoProps {
-    pathname: string
-}
-
-export const Logo = withRouter((props: RouteComponentProps) => <svg
+export const Logo = withRouter(props => <svg
     className="logo"
     viewBox="0 0 50 50"
     fill="none"

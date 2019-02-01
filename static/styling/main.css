@@ -269,6 +269,7 @@ a.block-link>i {
     height: 400px;
     object-fit: contain;
     margin: 1.3rem;
+    max-width: 100%;
 }
 
 @media (max-width: 950px) {
@@ -319,5 +320,13 @@ a.block-link>i {
     a.block-link {
         flex-grow: 1;
         margin-right: 0;
+    }
+
+    .article img {
+        float: none;
+        width: 400px;
+        height: 400px;
+        object-fit: contain;
+        margin: 1.3rem 0;
     }
 }

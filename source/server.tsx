@@ -2,12 +2,12 @@ import * as express from "express"
 import * as React from "react"
 import * as ReactDOMServer from "react-dom/server"
 import { Provider } from "react-redux"
-import { StaticRouter } from "react-router"
 import { AnyAction, createStore } from "redux"
 
-import { App } from "./components/app"
+import { App, routes } from "./components/app"
 import { getAppliedMiddleware } from "./redux/middlewares"
 import { reducer, State } from "./redux/state"
+import { RouterContext, match, createRoutes } from "react-router";
 
 
 const initServer = () => {
@@ -17,26 +17,25 @@ const initServer = () => {
 
     server.use(express.static("static"))
 
-    server.use("*", (req, res) => {
-        const context = {}
-        const store = createStore<State, AnyAction, any, any>(reducer, getAppliedMiddleware());
-
-        const ServerApp = <Provider store={store}>
-            <StaticRouter
-                location={req.url}
-                context={context}
-            >
-                <App />
-            </StaticRouter>
-        </Provider>
-
-        const appHtml = `
-<html>
+    server.use((req, res) => {
+        match(
+            {
+                routes: createRoutes(routes),
+                location: req.url
+            },
+            (error, redirectLocation, renderProps) => {
+                console.log(error, redirectLocation, renderProps)
+                if (error) {
+                    res.status(500).send(error.message)
+                } else if (redirectLocation) {
+                    res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+                } else if (renderProps) {
+                    const content = `<html>
 <head>
     <title>Nathan Russell</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link rel="stylesheet" href="styling/main.css">
+    <link rel="stylesheet" href="/styling/main.css">
 
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -60,14 +59,19 @@ const initServer = () => {
 </head>
 <body>
     <div id="root">
-        ${ReactDOMServer.renderToString(ServerApp)}
+        ${ReactDOMServer.renderToString(React.createElement(RouterContext, renderProps))}
     </div>
     <script src="/scripts/bundle.js"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,IntersectionObserverEntry,fetch,Promise"></script>
 </body>
 </html>`;
 
-        res.send(appHtml)
+                    res.status(200).send(content)
+                } else {
+                    res.status(404).send('Not found')
+                }
+            }
+        )
     });
 
     server.listen(port)

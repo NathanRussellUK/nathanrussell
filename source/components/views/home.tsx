@@ -3,7 +3,7 @@ import { Features } from "../features";
 import { BlockLinks } from "../block-links";
 import { featureList } from "../../feature-list";
 import { blockLinkList } from "../../block-link-list";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const Home = () => <div className="column-layout work">
     <div className="column-one">
