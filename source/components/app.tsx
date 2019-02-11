@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Router, Route } from "react-router"
+import { Router, Route, browserHistory, IndexRoute } from "react-router"
 
 import { Logo } from "./logo"
 import { AirQualityWalcotParade } from "./views/articles/article_air-quality-walcot-parade"
@@ -8,13 +8,12 @@ import { Politics } from "./views/politics"
 import { CAZConsultationSubmission } from './views/articles/article_caz-consultation-submission';
 import { Shell } from './views/shell';
 
-export const routes = <Route component={Shell}>
-    <Route path="/" component={Home} />
-    <Route path="/politics" component={Politics} />
-    <Route path="/politics/articles/concerns-over-air-quality-research-at-walcot-parade" component={AirQualityWalcotParade} />
-    <Route path="/politics/articles/clean-air-zone-consultation-submission" component={CAZConsultationSubmission} />
-</Route>
+import { RandomNumber } from "./views/random-number";
 
-export const App = () => <Router>
-    {routes}
-</Router>
+export const routes = <Route component={Shell} path="/">
+    <IndexRoute component={Home} />
+    <Route path="politics" component={Politics} />
+    <Route path="politics/articles/concerns-over-air-quality-research-at-walcot-parade" component={AirQualityWalcotParade} />
+    <Route path="politics/articles/clean-air-zone-consultation-submission" component={CAZConsultationSubmission} />
+    <Route path="random-numbers" component={RandomNumber} />
+</Route>

@@ -1,10 +1,9 @@
 import * as express from "express"
 import * as React from "react"
 import * as ReactDOMServer from "react-dom/server"
-import { Provider } from "react-redux"
 import { AnyAction, createStore } from "redux"
 
-import { App, routes } from "./components/app"
+import { routes } from "./components/app"
 import { getAppliedMiddleware } from "./redux/middlewares"
 import { reducer, State } from "./redux/state"
 import { RouterContext, match, createRoutes } from "react-router";

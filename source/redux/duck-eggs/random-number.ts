@@ -1,18 +1,21 @@
-import { put, takeEvery } from "redux-saga/effects";
-import { actionCreatorFactory, ActionUnion } from "../action-creators";
+import { put, takeEvery } from "redux-saga/effects"
+import { actionCreatorFactory, ActionUnion } from "../action-creators"
+import { DuckEgg } from "."
 
-export const getRandomNumber = actionCreatorFactory("getRandomNumber")();
+export const getRandomNumber = actionCreatorFactory("getRandomNumber")()
 
-export const setRandomNumber = actionCreatorFactory("setRandomNumber")<{payload: number}>();
+export const setRandomNumber = actionCreatorFactory("setRandomNumber")<{payload: number}>()
 
-const actionCreatorRefs = {
+const actions = {
     getRandomNumber,
     setRandomNumber,
-};
+}
 
-type DuckActionUnion = ActionUnion<typeof actionCreatorRefs>;
+type DuckActionUnion = ActionUnion<typeof actions>
 
-export const reducer = (state = null, action: DuckActionUnion) => {
+type State = number
+
+export const reducer = (state: State = null, action: DuckActionUnion): State => {
     switch (action.type) {
         case "setRandomNumber": {
             return action.payload
@@ -32,7 +35,8 @@ export function* rootSaga() {
     yield takeEvery(getRandomNumber.type, getRandomNumberSaga);
 }
 
-export const randomNumber = {
+export const randomNumber: DuckEgg<State> = {
     reducer,
-    rootSaga
+    rootSaga,
+    actions
 }

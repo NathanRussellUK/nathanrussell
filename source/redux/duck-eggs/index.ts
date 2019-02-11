@@ -14,4 +14,5 @@ export const systemDuckEggs = {
 export interface DuckEgg<State> {
   reducer: (state: State, action: Action) => State;
   rootSaga?: () => IterableIterator<Effect>;
+  actions?: any;
 }
