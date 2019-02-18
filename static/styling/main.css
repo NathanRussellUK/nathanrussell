@@ -49,15 +49,13 @@ h2 {
 
     display: flex;
     flex-shrink: 0;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
 
     transition-property: background-color;
     transition-duration: 0.25s;
 
     z-index: 1;
-
-    padding: 10px;
 }
 
 .header.work {
@@ -75,6 +73,7 @@ h2 {
     color: #ffffff;
     text-decoration: none;
 
+    padding: 10px;
 }
 
 .header>a.header-main>.logo {
@@ -102,12 +101,10 @@ h2 {
     text-decoration: none;
 
     padding: 20px;
-    margin-left: 1rem;
+    margin-left: 10px;
 
     transition-property: color, background-color, box-shadow;
     transition-duration: 0.1s;
-
-    margin: -10px;
 }
 
 .header.work>nav>a:hover {
