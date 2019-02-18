@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter, Link } from "react-router"
 import { Logo } from "../logo"
 
 export const Shell = withRouter((props: { children: any } & RouteComponentProps<{}, {}>) => <>
-    <div className="header">
+    <div className={`header${props.location.pathname === "/" ? " work" : " politics"}`}>
         <Link className="header-main" to={props.location.pathname === "/" ? "/" : "/politics"}>
             <Logo />
             <div>
@@ -13,8 +13,8 @@ export const Shell = withRouter((props: { children: any } & RouteComponentProps<
             </div>
         </Link>
         <nav>
-            {props.location.pathname === "/" && <Link to="/politics" className="fas fa-bullhorn fa-2x politics" />}
-            {props.location.pathname !== "/" && <Link to="/" className="fas fa-briefcase fa-2x work" />}
+            {props.location.pathname === "/" && <Link to="/politics" className="fas fa-bullhorn fa-lg" />}
+            {props.location.pathname !== "/" && <Link to="/" className="fas fa-briefcase fa-lg" />}
         </nav>
     </div>
     {props.children}
