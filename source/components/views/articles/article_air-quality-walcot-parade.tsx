@@ -6,7 +6,7 @@ export const AirQualityWalcotParade = () => {
 
         <p className="article-meta">An open letter published in the Bath Chronicle, Thursday 20 December 2018.</p>
 
-        <img src="/images/walcot-parade-monitor.jpg" alt="Walcot Parade Air Quality Monitor" />
+        <img src="/images/walcot-parade-monitor.jpg" alt="Walcot Parade Air Quality Monitor" style={{ width: "300px" }} />
         <p>As a campaigner for better air quality on London Road, I’ve welcomed the Council’s Clean Air Zone (CAZ) plan for Bath. Even if it has taken the prospect of the Council being fined by central government over their failure to tackle Bath’s air quality crisis, after years of resident’s concerns being ignored by Liberal Democrat and Conservative Councillors, to spur them to action.</p>
         <p>However, my submission to the Council’s consultation pointed out that the initial proposals are lacking in a few areas. Questions have been raised about the extent and methods of the modelling of the effects of Class C and D CAZs in Bath. In the interests of an evidence and common sense-based approach to local policy, it’s necessary to raise one specific issue that has been brought to my attention:</p>
         <p>Some emissions readings for the London road area were taken from a new monitor at Walcot Parade on the outbound lane of London Road; guidelines for such monitors state that they should be positioned at about head height on pedestrian pavements that are close to the roadside and, as the attached photo shows, the Walcot Parade device is about eight feet in the air. There are problems with the data collected from this position.</p>
