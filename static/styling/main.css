@@ -37,7 +37,7 @@ h2 {
     font-weight: bold;
     text-align: center;
     margin: 0;
-    margin-bottom: 2.6rem;
+    margin-bottom: 3rem;
 }
 
 .header {
@@ -97,23 +97,44 @@ h2 {
     font-size: 0.85rem;
 }
 
+.header>nav {
+    display: flex;
+    flex-direction: row;
+}
+
 .header>nav>a {
-    color: #ffffff;
+    color: #FFFFFF;
+    font-weight: 400;
+    text-align: center;
     text-decoration: none;
 
-    padding: 20px;
-    margin-left: 10px;
+    padding: 10px;
 
     transition-property: color, background-color, box-shadow;
     transition-duration: 0.1s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
 }
 
-.header.work>nav>a:hover {
-    background-color: #13BF9D;
+.header.work>nav>a {
+    background-color: #11A688;
 }
 
-.header.politics>nav>a:hover {
-    background-color: #FF2652;
+.header.politics>nav>a {
+    background-color: #F2244E;
+}
+
+.header>nav>a:hover {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5) inset;
+    background-color: #138CBF;
+}
+
+.header>nav>a:active {
+    background-color: #0E668C;
 }
 
 .column-layout {
@@ -157,10 +178,12 @@ h2 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 3rem;
 }
 
 a.inline-link {
     text-decoration: underline;
+    font-weight: 400;
 }
 
 a.block-link {
@@ -173,7 +196,6 @@ a.block-link {
     padding: 1.3rem;
     border: 1px solid #888888;
     border-radius: 10px;
-    margin-right: 1.3rem;
     margin-bottom: 1.3rem;
 
     color: #000000;
@@ -183,6 +205,10 @@ a.block-link {
 
     transition-property: border, background-color, color;
     transition-duration: 0.1s;
+}
+
+.block-links>a.block-link {
+    margin-right: 1.3rem;
 }
 
 a.block-link>i {
@@ -197,6 +223,11 @@ a.block-link:hover {
     border: 1px solid #138CBF;
     background-color: #138CBF;
     color: #ffffff;
+}
+
+a.block-link:active {
+    background-color: #0E668C;
+    color: #FFFFFF;
 }
 
 .spider-text {
@@ -251,15 +282,15 @@ a.block-link:hover {
     font-size: 1rem;
     font-style: italic;
 
-    margin-bottom: 2.6rem;
+    margin-bottom: 3rem;
 }
 
 .article img {
     float: right;
-    width: 400px;
     height: 400px;
     object-fit: contain;
-    margin: 1.3rem;
+    margin-left: 3rem;
+    margin-bottom: 3rem;
     max-width: 100%;
 }
 
@@ -318,10 +349,7 @@ a.block-link:hover {
 
     .article img {
         float: none;
-        width: 400px;
-        height: 400px;
-        object-fit: contain;
-        margin: 1.3rem auto;
+        margin: 3rem auto;
         display: block;
     }
 }

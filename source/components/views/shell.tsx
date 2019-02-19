@@ -2,8 +2,12 @@ import * as React from "react"
 import { RouteComponentProps, withRouter, Link } from "react-router"
 
 import { Logo } from "../logo"
+import Helmet from "react-helmet";
 
 export const Shell = withRouter((props: { children: any } & RouteComponentProps<{}, {}>) => <>
+    <Helmet>
+        <title>Nathan Russell | {props.location.pathname === "/" ? "Work" : "Politics"}</title>
+    </Helmet>
     <div className={`header${props.location.pathname === "/" ? " work" : " politics"}`}>
         <Link className="header-main" to={props.location.pathname === "/" ? "/" : "/politics"}>
             <Logo />
@@ -13,8 +17,8 @@ export const Shell = withRouter((props: { children: any } & RouteComponentProps<
             </div>
         </Link>
         <nav>
-            {props.location.pathname === "/" && <Link to="/politics" className="fas fa-bullhorn fa-lg" />}
-            {props.location.pathname !== "/" && <Link to="/" className="fas fa-briefcase fa-lg" />}
+            {props.location.pathname === "/" && <Link to="/politics"><i className="fas fa-bullhorn fa-lg" /></Link>}
+            {props.location.pathname !== "/" && <Link to="/"><i className="fas fa-briefcase fa-lg" /></Link>}
         </nav>
     </div>
     {props.children}
