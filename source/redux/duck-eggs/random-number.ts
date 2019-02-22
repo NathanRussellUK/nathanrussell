@@ -12,7 +12,7 @@ const actionCreatorRefs = {
 
 type DuckActionUnion = ActionUnion<typeof actionCreatorRefs>;
 
-export const reducer = (state = null, action: DuckActionUnion) => {
+export const reducer = (state: number = null, action: DuckActionUnion) => {
     switch (action.type) {
         case "setRandomNumber": {
             return action.payload
@@ -34,5 +34,6 @@ export function* rootSaga() {
 
 export const randomNumber = {
     reducer,
-    rootSaga
+    rootSaga,
+    actions: actionCreatorRefs
 }

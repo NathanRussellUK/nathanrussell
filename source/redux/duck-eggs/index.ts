@@ -4,6 +4,7 @@ import { randomNumber } from "./random-number";
 
 // Add your duck eggs here to hatch them...
 export const userDuckEggs = {
+  randomNumber
 };
 
 export const systemDuckEggs = {

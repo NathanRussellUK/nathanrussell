@@ -1,4 +1,5 @@
 import * as React from "react"
+import { RandomNumber } from "../random-number";
 import { Features } from "../features";
 import { BlockLinks } from "../block-links";
 import { featureList } from "../../feature-list";
@@ -14,6 +15,9 @@ export const Home = () => <div className="column-layout work">
                 aspects of the development process.</p>
             <BlockLinks blockLinks={blockLinkList} />
         </div>
+
+        <RandomNumber />
+
         <p className="spider-text">This site won't track you, and you're free to <Link className="inline-link" to="https://github.com/NathanRussellUK/nathanrussell" target="_blank">check out its source code</Link> on Github!</p>
     </div>
 

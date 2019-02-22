@@ -4,10 +4,13 @@ import * as ReactDOMServer from "react-dom/server"
 import { Provider } from "react-redux"
 import { AnyAction, createStore } from "redux"
 
-import { App, routes } from "./components/app"
+import { routes } from "./routes"
 import { getAppliedMiddleware } from "./redux/middlewares"
 import { reducer, State } from "./redux/state"
 import { RouterContext, match, createRoutes } from "react-router";
+import { HooksContext } from "./redux/hooks";
+import { runAllDuckEggSagas } from "./redux/sagas";
+import { createApplicationStore } from "./redux/store";
 
 
 const initServer = () => {
@@ -24,12 +27,17 @@ const initServer = () => {
                 location: req.url
             },
             (error, redirectLocation, renderProps) => {
-                console.log(error, redirectLocation, renderProps)
                 if (error) {
                     res.status(500).send(error.message)
                 } else if (redirectLocation) {
                     res.redirect(302, redirectLocation.pathname + redirectLocation.search)
                 } else if (renderProps) {
+
+                    const store = createApplicationStore();
+                    runAllDuckEggSagas();
+                
+                    const ServerApp = () => <HooksContext.Provider value={store}><RouterContext {...renderProps} /></HooksContext.Provider>;                
+
                     const content = `<html>
 <head>
     <title>Nathan Russell</title>
@@ -59,7 +67,7 @@ const initServer = () => {
 </head>
 <body>
     <div id="root">
-        ${ReactDOMServer.renderToString(React.createElement(RouterContext, renderProps))}
+        ${ReactDOMServer.renderToString(React.createElement(ServerApp))}
     </div>
     <script src="/scripts/bundle.js"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,IntersectionObserverEntry,fetch,Promise"></script>
