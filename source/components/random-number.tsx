@@ -4,22 +4,22 @@ import { Dispatch } from "redux";
 
 import { State } from "../redux/state";
 import { getRandomNumber } from '../redux/duck-eggs/random-number';
-import { duckHooks } from "../redux/hooks";
+import { duckHooks } from '../redux/hooks';
 
 export const RandomNumber: React.FunctionComponent = props => {
     const getRandomNumber = duckHooks.system.randomNumber.useDispatcher.getRandomNumber();
+    const resetRandomNumber = duckHooks.system.randomNumber.useDispatcher.resetRandomNumber();
 
     const randomNumber = duckHooks.system.randomNumber.useState();
 
-    // the second parameter specifies which props changing should trigger the inner function to be called again;
     const buttonContent = React.useMemo(() => {
         switch (randomNumber.status) {
             case "pending": {
-                return ""
+                return <i className="fas fa-spinner fa-spin" />
             }
 
             case "success": {
-                return ""
+                return <>Clear <i className="far fa-check-circle" /></>
             }
 
             default: {
@@ -44,11 +44,19 @@ export const RandomNumber: React.FunctionComponent = props => {
         }
     }, [randomNumber.status])
 
-    return <div className="random-number">
+    return <div className="random-number" data-status={randomNumber.status}>
         <div className="display">
             {displayContent}
         </div>
-        <button disabled={randomNumber.status === "pending"} onClick={() => { getRandomNumber({}) }}>
+        <button
+            disabled={randomNumber.status === "pending"}
+            onClick={() => {
+                !randomNumber.status ?
+                    getRandomNumber({})
+                    :
+                    resetRandomNumber({})
+            }}
+        >
             {buttonContent}
         </button>
     </div>;
