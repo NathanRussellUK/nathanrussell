@@ -48,7 +48,7 @@ export const RandomNumber: React.FunctionComponent = props => {
         <div className="display">
             {displayContent}
         </div>
-        <button onClick={() => { getRandomNumber({}) }}>
+        <button disabled={randomNumber.status === "pending"} onClick={() => { getRandomNumber({}) }}>
             {buttonContent}
         </button>
     </div>;
