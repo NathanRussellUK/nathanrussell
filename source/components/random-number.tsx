@@ -12,18 +12,34 @@ export const RandomNumber: React.FunctionComponent = props => {
 
     const randomNumber = duckHooks.system.randomNumber.useState();
 
-    const buttonContent = React.useMemo(() => {
+    const resultInput = React.useRef<HTMLInputElement>(null);
+
+    const buttons = React.useMemo(() => {
         switch (randomNumber.status) {
             case "pending": {
-                return <i className="fas fa-spinner fa-spin" />
+                return <button disabled>
+                    <i className="fas fa-spinner fa-spin" />
+                </button>
             }
 
             case "success": {
-                return <>Clear <i className="far fa-check-circle" /></>
+                return <>
+                    <button onClick={() => {
+                          resultInput.current.select();
+                          document.execCommand("copy");
+                    }} title="Copy number to clipboard">
+                        Copy <i className="far fa-copy" />
+                    </button>
+                    <button onClick={() => { resetRandomNumber({}) }}>
+                        Reset <i className="far fa-check-circle" />
+                    </button>
+                </>
             }
 
             default: {
-                return "Start!"
+                return <button onClick={() => { getRandomNumber({}) }}>
+                    Start <i className="far fa-play-circle" />
+                </button>
             }
         }
     }, [randomNumber.status])
@@ -35,7 +51,12 @@ export const RandomNumber: React.FunctionComponent = props => {
             }
 
             case "success": {
-                return <div className="result">{`${randomNumber.data}!`}</div>
+                return <input
+                    type="text"
+                    className="result"
+                    ref={resultInput}
+                    value={randomNumber.data}
+                />
             }
 
             default: {
@@ -48,16 +69,6 @@ export const RandomNumber: React.FunctionComponent = props => {
         <div className="display">
             {displayContent}
         </div>
-        <button
-            disabled={randomNumber.status === "pending"}
-            onClick={() => {
-                !randomNumber.status ?
-                    getRandomNumber({})
-                    :
-                    resetRandomNumber({})
-            }}
-        >
-            {buttonContent}
-        </button>
+        {buttons}
     </div>;
 }

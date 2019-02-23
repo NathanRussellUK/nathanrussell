@@ -363,11 +363,20 @@ a.block-link:active {
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
+}
+
+.random-number>.display>input.result {
+    height: 100%;
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 0 10px;
+    text-align: center;
+    text-overflow: ellipsis;
 }
 
 .random-number>button {
-    border-radius: 0 25px 25px 0;
-    padding-right: 10px;
     background-color: #138CBF;
     color: white;
     border: none;
@@ -377,14 +386,35 @@ a.block-link:active {
 
     transition-property: background-color;
     transition-duration: 0.5s;
+
+    margin-right: 10px;
+
+    flex-shrink: 0;
+}
+
+.random-number>button:hover {
+    background-color: #094058;
+}
+
+.random-number>button:last-child {
+    border-radius: 0 25px 25px 0;
+    padding-right: 10px;
+    
+    margin-right: 0;
 }
 
 .random-number[data-status="pending"] {
     background-color: #D46A0C;
+    cursor: progress;
 }
 
 .random-number[data-status="pending"]>button {
     background-color: #F28424;
+    cursor: progress;
+}
+
+.random-number[data-status="pending"]>button:hover {
+    background-color: #9F4F09;
 }
 
 .random-number[data-status="success"] {
@@ -393,6 +423,10 @@ a.block-link:active {
 
 .random-number[data-status="success"]>button {
     background-color: #11A688;
+}
+
+.random-number[data-status="success"]>button:hover {
+    background-color: #095D4C;
 }
 
 @media (max-width: 950px) {
