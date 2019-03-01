@@ -2,14 +2,32 @@ import * as React from "react"
 
 export const Logo: React.FunctionComponent = props => <svg
     className="logo"
-    viewBox="0 0 50 50"
+    viewBox="0 0 168 168" 
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
 >
-    <path
-        fillRule="evenodd" 
-        clipRule="evenodd" 
-        d="M10 0C4.47715 0 0 4.47715 0 10V40C0 45.5228 4.47715 50 10 50H40C45.5228 50 50 45.5228 50 40V10C50 4.47715 45.5228 0 40 0H10ZM28.2021 8.20209C26.2495 6.24947 23.0837 6.24947 21.131 8.20209L8.20209 21.131C6.24947 23.0837 6.24947 26.2495 8.20209 28.2021L21.131 41.131C23.0837 43.0837 26.2495 43.0837 28.2021 41.131L41.131 28.2021C43.0837 26.2495 43.0837 23.0837 41.131 21.131L28.2021 8.20209Z"
-        fill="black"
-    />
+    <g filter="url(#filter0_d)">
+        <rect x="5" y="5" width="150" height="150" fill="#C4C4C4"/>
+        <rect x="2.5" y="2.5" width="155" height="155" stroke="white" stroke-width="5"/>
+    </g>
+    <rect x="105" y="105" width="50" height="50" fill="#138CBF"/>
+    <rect x="55" y="105" width="50" height="50" fill="#0E668C"/>
+    <rect x="5" y="105" width="50" height="50" fill="#094058"/>
+    <rect x="55" y="55" width="50" height="50" fill="#0E8C73"/>
+    <rect x="5" y="55" width="50" height="50" fill="#095D4C"/>
+    <rect x="105" y="55" width="50" height="50" fill="#11A688"/>
+    <rect x="55" y="5" width="50" height="50" fill="#BF1D3D"/>
+    <rect x="5" y="5" width="50" height="50" fill="#92162F"/>
+    <rect x="105" y="5" width="50" height="50" fill="#F2244E"/>
+    <defs>
+        <filter id="filter0_d" x="0" y="0" width="168" height="168" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+            <feOffset dx="4" dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+        </filter>
+    </defs>
 </svg>
