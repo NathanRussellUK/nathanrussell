@@ -358,16 +358,22 @@ a.block-link:active {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
     margin-right: 10px;
     flex-grow: 1;
-    margin-left: 10px;
+    flex-direction: row;
     color: black;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
+    align-items: stretch;
+    justify-content: stretch;
+    border-radius: 25px 0 0 25px;
 }
 
+.random-number>.display>.prompt,
+.random-number>.display>.hold {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .random-number>.display>input.result {
-    height: 100%;
     width: 100%;
     border: none;
     background: transparent;
@@ -376,7 +382,12 @@ a.block-link:active {
     text-overflow: ellipsis;
 }
 
-.random-number>button {
+.random-number>.buttons {
+    flex-shrink: 0;
+    display: flex;
+}
+
+.random-number>.buttons>button {
     background-color: #138CBF;
     color: white;
     border: none;
@@ -384,19 +395,21 @@ a.block-link:active {
     font-weight: 400;
     cursor: pointer;
 
+    padding: 5px;
+
     transition-property: background-color;
     transition-duration: 0.5s;
 
     margin-right: 10px;
 
-    flex-shrink: 0;
+    flex-grow: 1;
 }
 
-.random-number>button:hover {
+.random-number>.buttons>button:hover {
     background-color: #094058;
 }
 
-.random-number>button:last-child {
+.random-number>.buttons>button:last-child {
     border-radius: 0 25px 25px 0;
     padding-right: 10px;
     
@@ -408,12 +421,12 @@ a.block-link:active {
     cursor: progress;
 }
 
-.random-number[data-status="pending"]>button {
+.random-number[data-status="pending"]>.buttons>button {
     background-color: #F28424;
     cursor: progress;
 }
 
-.random-number[data-status="pending"]>button:hover {
+.random-number[data-status="pending"]>.buttons>button:hover {
     background-color: #9F4F09;
 }
 
@@ -421,11 +434,11 @@ a.block-link:active {
     background-color: #0E8C73;
 }
 
-.random-number[data-status="success"]>button {
+.random-number[data-status="success"]>.buttons>button {
     background-color: #11A688;
 }
 
-.random-number[data-status="success"]>button:hover {
+.random-number[data-status="success"]>.buttons>button:hover {
     background-color: #095D4C;
 }
 
@@ -486,5 +499,35 @@ a.block-link:active {
         float: none;
         margin: 3rem auto;
         display: block;
+    }
+
+    .random-number {
+        flex-direction: column;
+        height: 90px;
+    }
+
+    .random-number>.display {
+        margin: 0;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .random-number>.buttons {
+        flex-shrink: 0;
+        margin: 0;
+        margin-top: 10px;
+    }
+    .random-number>.buttons>button:first-child {
+        border-bottom-left-radius: 20px;
+        padding-left: 10px;
+        
+        margin-left: 0;
+    }
+
+    .random-number>.buttons>button:last-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 20px;
+        padding-right: 10px;
+        
+        margin-right: 0;
     }
 }

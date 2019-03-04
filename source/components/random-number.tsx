@@ -69,6 +69,8 @@ export const RandomNumber: React.FunctionComponent = props => {
         <div className="display">
             {displayContent}
         </div>
-        {buttons}
+        <div className="buttons">
+            {buttons}
+        </div>
     </div>;
 }
