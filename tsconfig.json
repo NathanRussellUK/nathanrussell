@@ -8,6 +8,6 @@
     },
     "files": [
         "./source/client.tsx",
-        "./source/server.tsx"
+        "./source/site-renderer.tsx"
     ]
 }
