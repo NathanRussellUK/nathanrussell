@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Route } from "react-router"
+import { Route, IndexRoute } from "react-router"
 
 import { AirQualityWalcotParade } from "./components/views/articles/article_air-quality-walcot-parade"
 import { Home } from "./components/views/home"
@@ -9,6 +9,7 @@ import { Shell } from './components/views/shell';
 
 const routesDefinitions: RouteDefinition[] = [{
     component: Shell,
+    path: "*",
     childRoutes: [
         {
             path: "/",
@@ -53,27 +54,33 @@ const routeComponentBuilder = (routeDefinitions: RouteDefinition[]) => {
             routeComponentBuilder(routeDefinition.childRoutes)
 
         if (routeDefinition.component) {
-            return <Route path={routeDefinition.path} component={routeDefinition.component}>
-                {childRouteComponents}
-            </Route>
+            return routeDefinition.path === "/" ?
+                <IndexRoute component={routeDefinition.component}>
+                    {...childRouteComponents}
+                </IndexRoute>
+                :
+                <Route path={routeDefinition.path} component={routeDefinition.component}>
+                    {...childRouteComponents}
+                </Route>
         }
 
         return <>childRouteComponents</>
     })
 
-    return <>{routeComponents}</>
+    return routeComponents
 }
 
 const routePathBuilder = (routeDefinitions: RouteDefinition[], initPath: string = "") => {
     const routePaths = routeDefinitions.reduce<string[]>((paths, routeDefinition) => {
+        const path = ((!routeDefinition.path) || (routeDefinition.path === "*")) ? "" : routeDefinition.path
         const childRoutePaths: string[] = !routeDefinition.childRoutes ?
             []
             :
-            routePathBuilder(routeDefinition.childRoutes, initPath + (routeDefinition.path || ""))
+            routePathBuilder(routeDefinition.childRoutes, initPath + path)
 
         const newPaths = [...paths]
 
-        if (routeDefinition.path && routeDefinition.component) {
+        if (path !== "" && routeDefinition.component) {
             newPaths.push(initPath + routeDefinition.path)
         }
 

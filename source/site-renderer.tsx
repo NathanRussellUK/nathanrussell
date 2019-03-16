@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as ReactDOMServer from "react-dom/server"
 
-import { URL } from "url"
+import { URL, pathToFileURL } from "url"
 
 import { routeComponents, routePaths } from "./routes"
 import { RouterContext, match, createRoutes } from "react-router";
@@ -11,23 +11,35 @@ import { createApplicationStore } from "./redux/store";
 
 import * as fs from "fs"
 
+const routes = createRoutes(routeComponents);
+
 const renderPage = (path: string) => {
-    const location = new URL(path, 'https://example.org/')
+    const location = new URL(path, 'https://example.org/');
 
-    match(
-        {
-            routes: createRoutes(routeComponents),
-            location
-        },
-        (error, redirectLocation, renderProps) => {
-            if (!error && !redirectLocation && !!renderProps) {
+    console.log(location.pathname);
 
-                const store = createApplicationStore();
-                runAllDuckEggSagas();
-            
-                const ServerApp = () => <HooksContext.Provider value={store}><RouterContext {...renderProps} /></HooksContext.Provider>;                
+    return new Promise<string>((res, rej) => {
+        match(
+            {
+                routes,
+                location
+            },
+            (error, redirectLocation, renderProps) => {
+                if (error) {
+                    rej(error)
+                }
 
-                return `<html>
+                else if (redirectLocation) {
+                    rej(`REDIRECT: ${redirectLocation}`)
+                }
+                
+                else if (!!renderProps) {
+                    const store = createApplicationStore();
+                    runAllDuckEggSagas();
+                
+                    const ServerApp = () => <HooksContext.Provider value={store}><RouterContext {...renderProps} /></HooksContext.Provider>;                
+    
+                    const content = `<html>
 <head>
 <title>Nathan Russell</title>
 
@@ -62,43 +74,96 @@ const renderPage = (path: string) => {
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,IntersectionObserverEntry,fetch,Promise"></script>
 </body>
 </html>`;
+
+                    res(content);
+                }
+
+                else {
+                    rej(`NOT FOUND!`)
+                }
             }
-        }
-    )
+        )
+    
+    })
 }
 
+const writeFile = (path: string, data: string) => {
+    return new Promise((res, rej) => {
+        fs.writeFile(path, data, (err) => {
+            if (err) {
+                rej(err);
+            }
+
+            else {
+                res();
+            }
+        })
+    })
+}
+
+const writeDirectory = (path: string) => {
+    return new Promise((res, rej) => {
+        fs.mkdir(path, (err) => {
+            if (err) {
+                rej(err);
+            }
+
+            else {
+                res();
+            }
+        })
+    })
+}
+
+const exists = (path: string) => {
+    return new Promise((res, rej) => {
+        fs.exists(path, exists => res(exists));
+    })
+}
+
+const writePage = async (path: string[], content: string) => {
+    const staticFolderPath = __dirname + "/../static";
+
+    for (const pathElement of path) {
+        const i = path.indexOf(pathElement);
+
+        if (i === path.length -1) {
+            const destination = staticFolderPath + "/" + path.join("/");
+
+            console.log("WRITE FILE", destination)
+
+            await writeFile(destination, content);
+        }
+
+        else {
+            const destination = staticFolderPath + "/" + path.slice(0, i + 1).join("/");
+
+            const dirExists = await exists(destination);
+
+            if (!dirExists) {
+                console.log("MKDIR", destination);
+
+                await writeDirectory(destination);
+            }
+        }
+    }
+}
 
 const renderSite = async () => {
     try {
-        const fileWritePromises = routePaths.map(routePath => {
-            // const content = renderPage(routePath);
-        
-            if (routePath.substr(-1, 1) === "/") {
-                routePath = routePath + "index.html";
+        for (let routePath of routePaths) {
+            const content = await renderPage(routePath);
+
+            const path = routePath.split("/");
+            path.shift();
+
+            if (path[path.length -1] === "") {
+                path[path.length -1] = "index.html";
             }
-
-            const pathArray = routePath.split("/");
-            pathArray.shift();
+       
+            await writePage(path, content);
+        }
         
-            console.log(pathArray);
-        
-            return Promise.resolve();
-        
-            // return new Promise((res, rej) => {
-            //     fs.writeFile(filePath, content, (err) => {
-            //         if (err) {
-            //             rej(err)
-            //         }
-        
-            //         else {
-            //             res()
-            //         }
-            //     })
-            // })
-        })
-        
-        await Promise.all(fileWritePromises);
-
         console.log("Site render succeeded!");
     }
 
