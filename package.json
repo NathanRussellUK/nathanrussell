@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc && webpack",
     "build-dev": "tsc && webpack --mode=development",
-    "start": "node distribution/server.js",
+    "start": "node distribution/site-renderer.js",
     "postinstall": "npm run build"
   },
   "repository": {
