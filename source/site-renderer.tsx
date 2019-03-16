@@ -162,7 +162,8 @@ const renderSite = async () => {
             const path = routePath.split("/");
             path.shift();
 
-            if (path[path.length -1] === "") {
+            const isIndex = (path[path.length -1] === "_INDEX") || (path[path.length -1] === "")
+            if (isIndex) {
                 path[path.length -1] = "index.html";
             }
        

@@ -9,28 +9,28 @@ import { Shell } from './components/views/shell';
 
 const routesDefinitions: RouteDefinition[] = [{
     component: Shell,
-    path: "*",
+    path: "/",
     childRoutes: [
         {
-            path: "/",
+            path: "_INDEX",
             component: Home
         },
         {
-            path: "/politics",
+            path: "politics",
             childRoutes: [
                 {
-                    path: "/",
+                    path: "_INDEX",
                     component: Politics
                 },
                 {
-                    path: "/articles",
+                    path: "articles",
                     childRoutes: [
                         {
-                            path: "/concerns-over-air-quality-research-at-walcot-parade",
+                            path: "concerns-over-air-quality-research-at-walcot-parade",
                             component: AirQualityWalcotParade
                         },
                         {
-                            path: "/clean-air-zone-consultation-submission",
+                            path: "clean-air-zone-consultation-submission",
                             component: CAZConsultationSubmission
                         }
                     ]
@@ -38,7 +38,7 @@ const routesDefinitions: RouteDefinition[] = [{
             ]
         }
     ]
-}]
+}];
 
 interface RouteDefinition {
     path?: string
@@ -51,43 +51,64 @@ const routeComponentBuilder = (routeDefinitions: RouteDefinition[]) => {
         const childRouteComponents = !routeDefinition.childRoutes ?
             []
             :
-            routeComponentBuilder(routeDefinition.childRoutes)
+            routeComponentBuilder(routeDefinition.childRoutes);
 
         if (routeDefinition.component) {
-            return routeDefinition.path === "/" ?
+            return routeDefinition.path === "_INDEX" ?
                 <IndexRoute component={routeDefinition.component} />
                 :
                 <Route path={routeDefinition.path} component={routeDefinition.component}>
                     {...childRouteComponents}
-                </Route>
+                </Route>;
         }
 
-        return <Route path={routeDefinition.path}>{...childRouteComponents}</Route>
+        return <Route path={routeDefinition.path}>{...childRouteComponents}</Route>;
     })
 
-    return routeComponents
+    return routeComponents;
+}
+
+const getPathFromRouteDefinition = (path: string) => {
+    if (!path || path === "/") {
+        return "";
+    }
+
+    if (path === "_INDEX") {
+        return "/";
+    }
+
+    return path
 }
 
 const routePathBuilder = (routeDefinitions: RouteDefinition[], initPath: string = "") => {
     const routePaths = routeDefinitions.reduce<string[]>((paths, routeDefinition) => {
-        const path = ((!routeDefinition.path) || (routeDefinition.path === "*")) ? "" : routeDefinition.path
+        const path = getPathFromRouteDefinition(routeDefinition.path);
+
+        const isRoot = path === "";
+        const isIndex = path === "/";
+
+        const newPath = !(isRoot || isIndex) ?
+            initPath + "/" + path
+            :
+            initPath;
+
         const childRoutePaths: string[] = !routeDefinition.childRoutes ?
             []
             :
-            routePathBuilder(routeDefinition.childRoutes, initPath + path)
+            routePathBuilder(routeDefinition.childRoutes, newPath);
 
-        const newPaths = [...paths]
+        const newPaths = [...paths];
 
-        if (path !== "" && routeDefinition.component) {
-            newPaths.push(initPath + routeDefinition.path)
+        if (!(isRoot || isIndex) && routeDefinition.component) {
+            newPaths.push(newPath);
         }
 
-        newPaths.push(...childRoutePaths)
+        newPaths.push(...childRoutePaths);
 
-        return newPaths
+        return newPaths;
     }, [])
 
-    return routePaths
+    return routePaths;
 }
 
 export const routeComponents = routeComponentBuilder(routesDefinitions);
