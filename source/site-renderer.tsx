@@ -1,6 +1,8 @@
 import * as React from "react"
 import * as ReactDOMServer from "react-dom/server"
 
+import * as reactElementToJSXString from 'react-element-to-jsx-string';
+
 import { URL, pathToFileURL } from "url"
 
 import { routeComponents, routePaths } from "./routes"
@@ -11,12 +13,15 @@ import { createApplicationStore } from "./redux/store";
 
 import * as fs from "fs"
 
-const routes = createRoutes(routeComponents);
+const routes = createRoutes(routeComponents[0]);
+
+// console log the route structure.
+routeComponents.forEach(routeComponent => console.log(reactElementToJSXString(routeComponent)));
 
 const renderPage = (path: string) => {
     const location = new URL(path, 'https://example.org/');
 
-    console.log(location.pathname);
+    console.log("RENDERING", location.pathname);
 
     return new Promise<string>((res, rej) => {
         match(
@@ -164,11 +169,11 @@ const renderSite = async () => {
             await writePage(path, content);
         }
         
-        console.log("Site render succeeded!");
+        console.log("SITE RENDER SUCCESS!");
     }
 
     catch (err) {
-        console.error("Site render failed!", err);
+        console.error("SITE RENDER FAILURE!", err);
     }
 }
 

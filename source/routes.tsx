@@ -55,16 +55,14 @@ const routeComponentBuilder = (routeDefinitions: RouteDefinition[]) => {
 
         if (routeDefinition.component) {
             return routeDefinition.path === "/" ?
-                <IndexRoute component={routeDefinition.component}>
-                    {...childRouteComponents}
-                </IndexRoute>
+                <IndexRoute component={routeDefinition.component} />
                 :
                 <Route path={routeDefinition.path} component={routeDefinition.component}>
                     {...childRouteComponents}
                 </Route>
         }
 
-        return <>childRouteComponents</>
+        return <Route path={routeDefinition.path}>{...childRouteComponents}</Route>
     })
 
     return routeComponents
