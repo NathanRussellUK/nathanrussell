@@ -1,0 +1,94 @@
+@import "./keyframes.scss";
+@import "./fonts.scss";
+@import "./variables.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+body, #root {
+    display: flex;
+    flex-flow: column;
+
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+p, li {
+    font-size: 1.3rem;
+    margin: 0;
+    margin-bottom: 1.3rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 3rem;
+}
+
+a.inline-link {
+    color: #138CBF;
+    text-decoration: underline;
+    font-weight: 400;
+}
+
+.spider-text {
+    font-size: 0.9rem;
+    margin: 0;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+table {
+    border-collapse: collapse;
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+
+    thead {
+        font-weight: bold;
+    }
+
+    tbody {
+        font-weight: lighter;
+    }
+
+    td {
+        padding: 1rem;
+    }
+
+    tr.emphasis {
+        font-weight: bold;
+    }
+}
+
+// move this into a politics style sheet!
+.politics + * {
+    table {        
+        thead {
+            background-color: #BF1D3D;
+            color: #FFFFFF;
+        }
+
+        tbody {
+            tr {
+                &:nth-child(even) {
+                    background-color: #FFF2F5;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    body,
+    #root {
+        min-height: 100%;
+        height: auto;
+    }
+}

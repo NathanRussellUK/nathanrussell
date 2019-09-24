@@ -6,20 +6,30 @@ import { Home } from "./components/views/home"
 import { Politics } from "./components/views/politics"
 import { CAZConsultationSubmission } from './components/views/articles/article_caz-consultation-submission';
 import { Shell } from './components/views/shell';
+import { WalcotElectionResults2019 } from './components/views/articles/article_walcot-election-results-2019';
 
-const routesDefinitions: RouteDefinition[] = [{
+export interface RouteDefinition {
+    path?: string
+    component?: React.ComponentType<any>
+    childRoutes?: RouteDefinition[]
+    __IGNORE_ON_SERVER?: boolean
+}
+
+export const IndexPath = "__INDEX"
+
+export const routesDefinitions: RouteDefinition[] = [{
     component: Shell,
     path: "/",
     childRoutes: [
         {
-            path: "_INDEX",
+            path: IndexPath,
             component: Home
         },
         {
             path: "politics",
             childRoutes: [
                 {
-                    path: "_INDEX",
+                    path: IndexPath,
                     component: Politics
                 },
                 {
@@ -32,6 +42,10 @@ const routesDefinitions: RouteDefinition[] = [{
                         {
                             path: "clean-air-zone-consultation-submission",
                             component: CAZConsultationSubmission
+                        },
+                        {
+                            path: "walcot-election-results-2019",
+                            component: WalcotElectionResults2019
                         }
                     ]
                 }
@@ -39,12 +53,6 @@ const routesDefinitions: RouteDefinition[] = [{
         }
     ]
 }];
-
-interface RouteDefinition {
-    path?: string
-    component?: React.ComponentType<any>,
-    childRoutes?: RouteDefinition[]
-}
 
 const routeComponentBuilder = (routeDefinitions: RouteDefinition[]) => {
     const routeComponents = routeDefinitions.map(routeDefinition => {
@@ -54,7 +62,7 @@ const routeComponentBuilder = (routeDefinitions: RouteDefinition[]) => {
             routeComponentBuilder(routeDefinition.childRoutes);
 
         if (routeDefinition.component) {
-            return routeDefinition.path === "_INDEX" ?
+            return routeDefinition.path === IndexPath ?
                 <IndexRoute component={routeDefinition.component} />
                 :
                 <Route path={routeDefinition.path} component={routeDefinition.component}>
@@ -68,48 +76,4 @@ const routeComponentBuilder = (routeDefinitions: RouteDefinition[]) => {
     return routeComponents;
 }
 
-const getPathFromRouteDefinition = (path: string) => {
-    if (!path || path === "/") {
-        return "";
-    }
-
-    if (path === "_INDEX") {
-        return "/";
-    }
-
-    return path
-}
-
-const routePathBuilder = (routeDefinitions: RouteDefinition[], initPath: string = "") => {
-    const routePaths = routeDefinitions.reduce<string[]>((paths, routeDefinition) => {
-        const path = getPathFromRouteDefinition(routeDefinition.path);
-
-        const isRoot = path === "";
-        const isIndex = path === "/";
-
-        const newPath = !(isRoot || isIndex) ?
-            initPath + "/" + path
-            :
-            initPath;
-
-        const childRoutePaths: string[] = !routeDefinition.childRoutes ?
-            []
-            :
-            routePathBuilder(routeDefinition.childRoutes, newPath);
-
-        const newPaths = [...paths];
-
-        if (!(isRoot || isIndex) && routeDefinition.component) {
-            newPaths.push(newPath);
-        }
-
-        newPaths.push(...childRoutePaths);
-
-        return newPaths;
-    }, [])
-
-    return routePaths;
-}
-
 export const routeComponents = routeComponentBuilder(routesDefinitions);
-export const routePaths = routePathBuilder(routesDefinitions);

@@ -1,6 +1,8 @@
 import * as React from "react"
 import { RouteComponentProps, withRouter, Link } from "react-router"
 
+import "./shell.scss";
+
 import { Logo } from "../logo"
 import Helmet from "react-helmet";
 import { HooksContext } from "../../redux/hooks";
@@ -8,7 +10,7 @@ import { HooksContext } from "../../redux/hooks";
 export const Shell = withRouter(props => {
     const context = React.useContext(HooksContext)
 
-    return <>
+    return <div className="shell">
         <Helmet>
             <title>Nathan Russell | {props.location.pathname === "/" ? "Work" : "Politics"}</title>
         </Helmet>
@@ -26,5 +28,5 @@ export const Shell = withRouter(props => {
             </nav>
         </div>
         {props.children}
-    </>
+    </div>
 })

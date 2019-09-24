@@ -1,0 +1,69 @@
+.column-layout {
+    flex-grow: 1;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 0;
+
+    .column-one,
+    .column-two {
+        flex-basis: 50%;
+        flex-grow: 1;
+        min-width: 475px;
+    }
+
+    .column-two {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &.politics .column-one {
+        background-color: #FFF2F5;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        padding: 50px;
+    }
+
+    &.work {
+        .column-one {
+            background-color: #F2FFFC;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            padding: 50px;
+        }
+
+        .column-two {
+            overflow: hidden;
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    .column-layout {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        min-height: auto;
+
+        .column-one,
+        .column-two {
+            flex-basis: auto;
+            flex-shrink: 0;
+
+            min-width: 0;
+            max-width: 100%;
+            max-height: none;
+        }
+
+        .column-one {
+            padding: 15px;
+        }
+    }
+}

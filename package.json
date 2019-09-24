@@ -1,40 +1,47 @@
 {
-  "name": "nathan-russell",
+  "name": "nathanrussell",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && webpack",
-    "build-dev": "tsc && webpack --mode=development",
-    "start": "node distribution/site-renderer.js",
-    "postinstall": "npm run build"
+    "webpack-bundle": "webpack --config ./webpack.config-bundle.js",
+    "webpack-site-renderer": "webpack --config ./webpack.config-site-renderer.js",
+    "webpack": "npm run webpack-bundle && npm run webpack-site-renderer",
+    "render-site": "node distribution/site-renderer.js",
+    "build": "npm run webpack && npm run render-site",
+    "serve": "http-server static"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NathanRussellUK/nathanrussell.git"
+    "url": "git+https://github.com/NathanRussellUK/socialist-labour-alliance.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.3",
-    "react": "^16.7.0-alpha.2",
-    "react-dom": "^16.7.0-alpha.2",
-    "react-helmet": "^5.2.0",
-    "react-redux": "^5.0.7",
-    "react-router": "^3",
-    "redux": "^4.0.0",
-    "redux-saga": "^0.16.0",
-    "webpack": "^4.16.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/express": "^4.16.0",
     "@types/react": "^16.7.0-alpha.2",
     "@types/react-dom": "^16.0.11",
-    "@types/react-helmet": "^5.0.8",
+    "@types/react-helmet": "^5.0.10",
     "@types/react-redux": "^6.0.4",
     "@types/react-router": "^3",
-    "react-element-to-jsx-string": "^14.0.2",
+    "mini-css-extract-plugin": "^0.7.0",
     "typescript": "3.2.2",
-    "webpack-cli": "^3.1.0"
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
+    "react-helmet": "^5.2.1",
+    "react-redux": "^5.0.7",
+    "react-router": "^3",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
+    "node-sass": "^4.11.0",
+    "http-server": "^0.11.1",
+    "style-loader": "^0.23.1",
+    "css-loader": "^2.1.1",
+    "sass-loader": "^7.1.0",
+    "ts-loader": "^5.3.3",
+    "ignore-loader": "^0.1.2"
   }
 }

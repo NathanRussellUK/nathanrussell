@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router";
 
+import "./block-links.scss";
+
 export interface BlockLinkProps {
     id: string;
     href: string;

@@ -6,6 +6,8 @@ import { featureList } from "../../feature-list";
 import { blockLinkList } from "../../block-link-list";
 import { Link } from "react-router";
 
+import "../../theme/column-layout.scss";
+
 export const Home = () => <div className="column-layout work">
     <div className="column-one">
         <div className="content">

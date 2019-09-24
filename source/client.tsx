@@ -11,6 +11,8 @@ import { Router, browserHistory } from "react-router";
 import { HooksContext } from "./redux/hooks";
 import { createApplicationStore } from "./redux/store";
 
+import "./theme/main.scss";
+
 const initClient = () => {
     const store = createApplicationStore();
     runAllDuckEggSagas();

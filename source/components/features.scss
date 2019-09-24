@@ -1,0 +1,35 @@
+.features {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    flex-grow: 1;
+
+    animation: rotate-in 1.25s;
+    animation-fill-mode: forwards;
+    transform-style: preserve-3d;
+
+    >* {
+        animation: rotate-in-children 1.25s;
+        animation-fill-mode: forwards;
+    }
+
+    >.feature {
+        display: block;
+        height: 150px;
+        width: 150px;
+        margin: 30px;
+        >img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+            opacity: 0;
+            animation: fade-in 1.25s;
+            animation-fill-mode: forwards;
+        }
+    }
+}

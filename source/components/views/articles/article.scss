@@ -1,0 +1,41 @@
+.article {
+    max-width: 1024px;
+    padding: 3rem;
+    margin: auto;
+
+    .article-meta {
+        text-align: center;
+        font-size: 1rem;
+        font-style: italic;
+
+        margin-bottom: 3rem;
+    }
+
+    img {
+        float: right;
+        height: 400px;
+        object-fit: contain;
+        margin-left: 3rem;
+        margin-bottom: 3rem;
+        max-width: 100%;
+
+        animation: rotate-in 1.25s, fade-in 1.25s;
+        animation-fill-mode: forwards;
+    }
+
+    table {
+        margin-left: auto;
+        margin-right: auto;
+
+        animation: rotate-in 1.25s, fade-in 1.25s;
+        animation-fill-mode: forwards;
+    }
+}
+
+@media (max-width: 950px) {
+    .article img {
+        float: none;
+        margin: 3rem auto;
+        display: block;
+    }
+}

@@ -1,0 +1,137 @@
+.random-number {
+    display: flex;
+    height: 50px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 25px;
+    background-color: #0E668C;
+    color: white;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+    transition-property: background-color;
+    transition-duration: 0.5s;
+
+    >.display {
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
+        margin-right: 10px;
+        flex-grow: 1;
+        flex-direction: row;
+        color: black;
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+        border-radius: 25px 0 0 25px;
+
+        >.prompt,
+        >.hold {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        >input.result {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 0 10px;
+            text-align: center;
+            text-overflow: ellipsis;
+        }
+    }
+
+    >.buttons {
+        flex-shrink: 0;
+        display: flex;
+
+        >button {
+            background-color: #138CBF;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+
+            padding: 5px;
+
+            transition-property: background-color;
+            transition-duration: 0.5s;
+
+            margin-right: 10px;
+
+            flex-grow: 1;
+
+            &:hover {
+                background-color: #094058;
+            }
+
+            &:last-child {
+                border-radius: 0 25px 25px 0;
+                padding-right: 10px;
+                
+                margin-right: 0;
+            }
+        }
+    }
+
+    &[data-status="pending"] {
+        background-color: #D46A0C;
+        cursor: progress;
+
+        >.buttons>button {
+            background-color: #F28424;
+            cursor: progress;
+
+            &:hover {
+                background-color: #9F4F09;
+            }
+        }
+    }
+
+    &[data-status="success"] {
+        background-color: #0E8C73;
+        
+        >.buttons>button {
+            background-color: #11A688;
+
+            &:hover {
+                background-color: #095D4C;
+            }
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    .random-number {
+        flex-direction: column;
+        height: 90px;
+    
+        >.display {
+            margin: 0;
+            border-radius: 20px 20px 0 0;
+        }
+
+        >.buttons {
+            flex-shrink: 0;
+            margin: 0;
+            margin-top: 10px;
+            >button {
+                &:first-child {
+                    border-bottom-left-radius: 20px;
+                    padding-left: 10px;
+                    
+                    margin-left: 0;
+                }
+
+                &:last-child {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 20px;
+                    padding-right: 10px;
+                    
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

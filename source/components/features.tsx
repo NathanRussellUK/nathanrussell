@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import "./features.scss";
+
 export interface FeatureProps {
     id: string;
     to: string;
@@ -10,7 +12,7 @@ export interface FeatureProps {
 }
 
 const Feature = (props: FeatureProps) => {
-    const [ isObserved, setIsObserved ] = React.useState(false);
+    const [isObserved, setIsObserved] = React.useState(false);
     const featureRef = React.useRef<HTMLAnchorElement>(null);
 
     React.useEffect(() => {

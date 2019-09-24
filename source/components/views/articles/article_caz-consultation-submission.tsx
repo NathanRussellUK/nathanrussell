@@ -1,5 +1,7 @@
 import * as React from "react"
 
+import "./article.scss";
+
 export const CAZConsultationSubmission = () => {
     return <div className="article">
         <h2>CLEAN AIR ZONE CONSULTATION SUBMISSION</h2>

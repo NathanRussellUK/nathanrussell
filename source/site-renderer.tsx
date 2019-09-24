@@ -1,22 +1,20 @@
+import * as fs from "fs"
 import * as React from "react"
 import * as ReactDOMServer from "react-dom/server"
+import * as pathLib from "path";
+import { URL } from "url"
 
-import * as reactElementToJSXString from 'react-element-to-jsx-string';
-
-import { URL, pathToFileURL } from "url"
-
-import { routeComponents, routePaths } from "./routes"
+import { routeComponents, routesDefinitions, RouteDefinition, IndexPath } from './routes';
 import { RouterContext, match, createRoutes } from "react-router";
 import { HooksContext } from "./redux/hooks";
 import { runAllDuckEggSagas } from "./redux/sagas";
 import { createApplicationStore } from "./redux/store";
 
-import * as fs from "fs"
-
 const routes = createRoutes(routeComponents[0]);
 
-// console log the route structure.
-routeComponents.forEach(routeComponent => console.log(reactElementToJSXString(routeComponent)));
+console.log("APP DIR", pathLib.dirname(process.mainModule.filename))
+
+const appDir = pathLib.dirname(process.mainModule.filename);;
 
 const renderPage = (path: string) => {
     const location = new URL(path, 'https://example.org/');
@@ -37,19 +35,19 @@ const renderPage = (path: string) => {
                 else if (redirectLocation) {
                     rej(`REDIRECT: ${redirectLocation}`)
                 }
-                
+
                 else if (!!renderProps) {
                     const store = createApplicationStore();
                     runAllDuckEggSagas();
-                
-                    const ServerApp = () => <HooksContext.Provider value={store}><RouterContext {...renderProps} /></HooksContext.Provider>;                
-    
+
+                    const ServerApp = () => <HooksContext.Provider value={store}><RouterContext {...renderProps} /></HooksContext.Provider>;
+
                     const content = `<html>
 <head>
 <title>Nathan Russell</title>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-<link rel="stylesheet" href="/styling/main.css">
+<link rel="stylesheet" href="/styles/main.css">
 
 <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -88,7 +86,7 @@ const renderPage = (path: string) => {
                 }
             }
         )
-    
+
     })
 }
 
@@ -127,12 +125,12 @@ const exists = (path: string) => {
 }
 
 const writePage = async (path: string[], content: string) => {
-    const staticFolderPath = __dirname + "/../static";
+    const staticFolderPath = appDir + "/../static";
 
     for (const pathElement of path) {
         const i = path.indexOf(pathElement);
 
-        if (i === path.length -1) {
+        if (i === path.length - 1) {
             const destination = staticFolderPath + "/" + path.join("/");
 
             console.log("WRITE FILE", destination)
@@ -154,22 +152,104 @@ const writePage = async (path: string[], content: string) => {
     }
 }
 
+const copyFile = async (source: string, destination: string) => {
+    return new Promise((res, rej) => fs.copyFile(source, destination, (err) => {
+        if (err) {
+            rej(err);
+        }
+
+        else {
+            res();
+        }
+    }))
+}
+
+const getPathFromRouteDefinition = (path: string) => {
+    if (!path || path === "/") {
+        return "";
+    }
+
+    if (path === IndexPath) {
+        return "/";
+    }
+
+    return path
+}
+
+const routePathBuilder = (routeDefinitions: RouteDefinition[], initPath: string = "") => {
+    const routePaths = routeDefinitions.reduce<string[]>((paths, routeDefinition) => {
+        const path = getPathFromRouteDefinition(routeDefinition.path);
+
+        const isRoot = path === "";
+        const isIndex = path === "/";
+
+        // Should root routes always be ignored, regardless of flag?
+        const isIgnored = routeDefinition.__IGNORE_ON_SERVER;
+
+        const newPath = !(isRoot || isIndex) ?
+            initPath + "/" + path
+            :
+            initPath + path;
+
+        const childRoutePaths: string[] = !routeDefinition.childRoutes ?
+            []
+            :
+            routePathBuilder(routeDefinition.childRoutes, newPath);
+
+        const newPaths = [...paths];
+
+        if (!isIgnored && routeDefinition.component) {
+            newPaths.push(newPath);
+        }
+
+        newPaths.push(...childRoutePaths);
+
+        return newPaths;
+    }, [])
+
+    return routePaths;
+}
+
 const renderSite = async () => {
     try {
+        const scriptsDirExists = await exists(appDir + "/../static/scripts");
+
+        if (!scriptsDirExists) {
+            console.log("MKDIR", appDir + "/../static/scripts");
+
+            await writeDirectory(appDir + "/../static/scripts");
+        }
+
+        const stylesDirExists = await exists(appDir + "/../static/styles");
+
+        if (!stylesDirExists) {
+            console.log("MKDIR", appDir + "/../static/styles");
+
+            await writeDirectory(appDir + "/../static/styles");
+        }
+
+        await copyFile(appDir + "/bundle.js", appDir + "/../static/scripts/bundle.js");
+        await copyFile(appDir + "/main.css", appDir + "/../static/styles/main.css");
+
+        const routePaths = routePathBuilder(routesDefinitions);
+
         for (let routePath of routePaths) {
             const content = await renderPage(routePath);
 
             const path = routePath.split("/");
             path.shift();
 
-            const isIndex = (path[path.length -1] === "_INDEX") || (path[path.length -1] === "")
+            const isIndex = (path[path.length - 1] === IndexPath) || (path[path.length - 1] === "")
             if (isIndex) {
-                path[path.length -1] = "index.html";
+                path[path.length - 1] = "index.html";
             }
-       
+            else {
+                path[path.length - 1] += ".html";
+            }
+
             await writePage(path, content);
         }
-        
+
         console.log("SITE RENDER SUCCESS!");
     }
 

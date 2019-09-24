@@ -6,6 +6,8 @@ import { State } from "../redux/state";
 import { getRandomNumber } from '../redux/duck-eggs/random-number';
 import { duckHooks } from '../redux/hooks';
 
+import "./random-number.scss";
+
 export const RandomNumber: React.FunctionComponent = props => {
     const getRandomNumber = duckHooks.system.randomNumber.useDispatcher.getRandomNumber();
     const resetRandomNumber = duckHooks.system.randomNumber.useDispatcher.resetRandomNumber();
@@ -25,8 +27,8 @@ export const RandomNumber: React.FunctionComponent = props => {
             case "success": {
                 return <>
                     <button onClick={() => {
-                          resultInput.current.select();
-                          document.execCommand("copy");
+                        resultInput.current.select();
+                        document.execCommand("copy");
                     }} title="Copy number to clipboard">
                         Copy <i className="far fa-copy" />
                     </button>

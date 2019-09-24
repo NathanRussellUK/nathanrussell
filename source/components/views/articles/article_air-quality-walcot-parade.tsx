@@ -1,5 +1,7 @@
 import * as React from "react"
 
+import "./article.scss";
+
 export const AirQualityWalcotParade = () => {
     return <div className="article">
         <h2>CONCERNS OVER AIR QUALITY RESEARCH AT WALCOT PARADE</h2>
