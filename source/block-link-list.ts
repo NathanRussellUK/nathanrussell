@@ -3,9 +3,9 @@ import { BlockLinkProps } from "./components/block-links";
 export const blockLinkList: BlockLinkProps[] = [
     {
         id: "email",
-        href: "mailto:personal@nathanrussell.me.uk",
+        href: "mailto:nathan.stanley.russell@outlook.com",
         iconClass: "fas fa-lg fa-envelope",
-        text: "personal@nathanrussell.me.uk",
+        text: "nathan.stanley.russell@outlook.com",
         big: true
     },
     {
