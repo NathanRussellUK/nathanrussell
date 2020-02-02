@@ -9,6 +9,7 @@ export interface BlockLinkProps {
     iconClass: string;
     text: string;
     big?: boolean;
+    internal?: boolean;
 }
 
 export const BlockLinkInternal = (props: BlockLinkProps) => <Link
@@ -29,10 +30,15 @@ const BlockLink = (props: BlockLinkProps) => <a
     {props.text}
 </a>
 
-const mapBlockLink = (blockLink, index) => <BlockLink
-    {...blockLink}
-    key={blockLink.id}
-/>
+const mapBlockLink = (blockLink: BlockLinkProps) => {
+    // should this be done in a different way?
+    const BL = blockLink.internal ? BlockLinkInternal : BlockLink;
+
+    return <BL
+        {...blockLink}
+        key={blockLink.id}
+    />
+}
 
 interface BlockLinksProps {
     blockLinks: BlockLinkProps[]

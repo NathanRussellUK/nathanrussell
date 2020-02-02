@@ -1,3 +1,5 @@
+@import '../theme/variables.scss';
+
 a.block-link {
     display: flex;
     flex-direction: row;
@@ -6,8 +8,7 @@ a.block-link {
     text-decoration: none;
 
     padding: 1.3rem;
-    border: 1px solid #888888;
-    border-radius: 10px;
+    border: 1px solid $gray;
     margin-bottom: 1.3rem;
 
     color: #000000;
@@ -19,18 +20,14 @@ a.block-link {
     transition-duration: 0.1s;
 
     >i {
-        margin-right: 1rem;
+        margin-right: $size-medium;
     }
 
-    &:hover {
-        border: 1px solid #138CBF;
-        background-color: #138CBF;
-        color: #ffffff;
-    }
-
+    &:hover,
     &:active {
-        background-color: #0E668C;
-        color: #FFFFFF;
+        border: 1px solid $blue;
+        background-color: $blue;
+        color: #ffffff;
     }
 }
 
@@ -38,10 +35,9 @@ a.block-link {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 3rem;
 
     >a.block-link {
-        margin-right: 1.3rem;
+        margin-right: $size-medium;
     }
 }
 

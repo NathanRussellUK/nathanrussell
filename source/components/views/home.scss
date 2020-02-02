@@ -1,0 +1,79 @@
+@import '../../theme/variables.scss';
+
+.column {
+    &#intro {
+        background-color: $extra-light-blue;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .block-links {
+            margin-top: $size-large;
+        }
+    }
+
+    &#features {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &#rocketmakers-feature {
+        background-color: $rm-laforge-extra-light;
+    };
+
+    &#spicerack-feature {
+        background-color: $sr-red-extra-light;
+    };
+
+    &#articles {
+        background-color: $blue;
+        color: white;
+
+        h2 {
+            text-align: left;
+        }
+
+        .block-links {
+            flex-direction: column;
+
+            >a.block-link {
+                margin-right: 0;
+
+                color: white;
+                border-color: white;
+
+                &:hover,
+                &:active {
+                    border-color: white;
+                    background-color: white;
+                    color: $blue;
+                }
+            }
+        }
+    }
+
+    &.job {
+        .employer-logo {
+            height: 65px;
+            max-width: 100%;
+        }
+
+        h2 {
+            font-weight: 800;
+            text-align: left;
+            margin: 0;
+            margin-top: $size-large;
+
+            >i {
+                margin-right: $size-medium;
+            }
+        }
+        p.dates {
+
+        }
+    }
+}

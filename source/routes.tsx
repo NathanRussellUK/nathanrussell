@@ -1,12 +1,15 @@
 import * as React from "react"
 import { Route, IndexRoute } from "react-router"
 
-import { AirQualityWalcotParade } from "./components/views/articles/article_air-quality-walcot-parade"
 import { Home } from "./components/views/home"
-import { Politics } from "./components/views/politics"
-import { CAZConsultationSubmission } from './components/views/articles/article_caz-consultation-submission';
 import { Shell } from './components/views/shell';
+
+import { AdoptingThirdPartyTechnologies } from './components/views/articles/article_adopting-third-party-technologies';
+import { AirQualityWalcotParade } from "./components/views/articles/article_air-quality-walcot-parade"
+import { BlockScopedVariables } from './components/views/articles/article_block-scoped-variables';
+import { CAZConsultationSubmission } from './components/views/articles/article_caz-consultation-submission';
 import { WalcotElectionResults2019 } from './components/views/articles/article_walcot-election-results-2019';
+import { WebEmailW3C } from './components/views/articles/article_web-email-w3c';
 
 export interface RouteDefinition {
     path?: string
@@ -26,28 +29,31 @@ export const routesDefinitions: RouteDefinition[] = [{
             component: Home
         },
         {
-            path: "politics",
+            path: "articles",
             childRoutes: [
                 {
-                    path: IndexPath,
-                    component: Politics
+                    path: "concerns-over-air-quality-research-at-walcot-parade",
+                    component: AirQualityWalcotParade
                 },
                 {
-                    path: "articles",
-                    childRoutes: [
-                        {
-                            path: "concerns-over-air-quality-research-at-walcot-parade",
-                            component: AirQualityWalcotParade
-                        },
-                        {
-                            path: "clean-air-zone-consultation-submission",
-                            component: CAZConsultationSubmission
-                        },
-                        {
-                            path: "walcot-election-results-2019",
-                            component: WalcotElectionResults2019
-                        }
-                    ]
+                    path: "clean-air-zone-consultation-submission",
+                    component: CAZConsultationSubmission
+                },
+                {
+                    path: "walcot-election-results-2019",
+                    component: WalcotElectionResults2019
+                },
+                {
+                    path: "block-scoped-variables",
+                    component: BlockScopedVariables
+                },
+                {
+                    path: "web-email-w3c",
+                    component: WebEmailW3C
+                },
+                {
+                    path: "adopting-third-party-technologies",
+                    component: AdoptingThirdPartyTechnologies
                 }
             ]
         }
