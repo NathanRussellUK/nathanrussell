@@ -1,3 +1,5 @@
+// Brand colours
+
 $green: hsl(168, 82%, 30%);
 $extra-light-green: hsl(166, 100%, 95%);
 
@@ -8,17 +10,33 @@ $dark-blue: hsl(198, 82%, 30%);
 $light-gray: #f0f0f0;
 $gray: #888888;
 
+// External brand colours
+
+// - Rocketmakers
+
 $rm-laforge: hsl(34, 93%, 65%);
 $rm-laforge-extra-light: hsl(34, 93%, 90%);
+
+// - Spicerack
 
 $sr-red: hsl(9, 85%, 31%);
 $sr-red-extra-light: hsl(9, 85%, 90%);
 
-$size-extra-large: 50px;
-$size-large: 20px;
-$size-medium: 10px;
-$size-small: 5px;
+// Spacing
+
+$spacing-extra-large: 50px;
+$spacing-large: 20px;
+$spacing-medium: 10px;
+$spacing-small: 5px;
+$spacing-extra-small: 1px;
+
+// Font sizes
+
+$font-size-small: 0.9rem;
+$font-size-medium: 1rem;
+$font-size-large: 1.3rem;
+$font-size-extra-large: 1.5rem;
+
+// Misc
 
 $header-height: 50px;
-
-$shadow-small-dark: 0 0 $size-small 0 rgba(0, 0, 0, 0.5);

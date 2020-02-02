@@ -7,25 +7,25 @@ a.block-link {
 
     text-decoration: none;
 
-    padding: 1.3rem;
-    border: 1px solid $gray;
-    margin-bottom: 1.3rem;
+    padding: $spacing-large;
+    border: $spacing-extra-small solid $gray;
+    margin-bottom: $spacing-large;
 
     color: #000000;
     font-weight: 400;
     word-break: break-all;
     word-break: break-word;
 
-    transition-property: border, background-color, color;
+    transition-property: border-color, background-color, color;
     transition-duration: 0.1s;
 
     >i {
-        margin-right: $size-medium;
+        margin-right: $spacing-medium;
     }
 
     &:hover,
     &:active {
-        border: 1px solid $blue;
+        border-color: $blue;
         background-color: $blue;
         color: #ffffff;
     }
@@ -37,13 +37,14 @@ a.block-link {
     flex-wrap: wrap;
 
     >a.block-link {
-        margin-right: $size-medium;
+        margin-right: $spacing-large;
     }
 }
 
 @media (max-width: 950px) {
     .block-links {
         flex-direction: column;
+        width: 100%;
 
         >a.block-link {
             margin-right: 0;

@@ -1,22 +1,24 @@
+@import '../../../theme/variables.scss';
+
 .article {
     max-width: 1024px;
-    padding: 3rem;
+    padding: $spacing-extra-large;
     margin: auto;
 
     .article-meta {
         text-align: center;
-        font-size: 1rem;
+        font-size: $font-size-medium;
         font-style: italic;
 
-        margin-bottom: 3rem;
+        margin-bottom: $spacing-extra-large;
     }
 
     img {
         float: right;
         height: 400px;
         object-fit: contain;
-        margin-left: 3rem;
-        margin-bottom: 3rem;
+        margin-left: $spacing-extra-large;
+        margin-bottom: $spacing-extra-large;
         max-width: 100%;
 
         animation: rotate-in 1.25s, fade-in 1.25s;
@@ -35,7 +37,7 @@
 @media (max-width: 950px) {
     .article img {
         float: none;
-        margin: 3rem auto;
+        margin: $spacing-extra-large auto;
         display: block;
     }
 }
