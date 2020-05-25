@@ -1,7 +1,8 @@
 // Brand colours
 
-$green: hsl(168, 82%, 30%);
+$green: #0e8c73;
 $extra-light-green: hsl(166, 100%, 95%);
+$dark-green: hsl(168, 82%, 20%);
 
 $blue: hsl(198, 82%, 41%);
 $extra-light-blue: hsl(198, 82%, 95%);
@@ -40,3 +41,6 @@ $font-size-extra-large: 1.5rem;
 // Misc
 
 $header-height: 50px;
+
+$box-shadow-standard: -$spacing-extra-small $spacing-extra-small $spacing-small
+  0 rgba(0, 0, 0, 0.25);

@@ -1,49 +1,53 @@
-import * as React from "react"
-import { withRouter } from "react-router"
+import * as React from "react";
+import { withRouter } from "react-router";
 
 import "./shell.scss";
 
 import Helmet from "react-helmet";
 import { HooksContext } from "../../redux/hooks";
 
-export const Shell = withRouter(props => {
-    const context = React.useContext(HooksContext)
+import { Logo } from "../logo";
 
-    const [scrolled, setScrolled] = React.useState(false)
+export const Shell = withRouter((props) => {
+  const context = React.useContext(HooksContext);
 
-    const isBrowser = React.useMemo(() => typeof document !== "undefined", []);
+  const [scrolled, setScrolled] = React.useState(false);
 
-    const onScroll = React.useCallback(() => {
-        if (isBrowser && document.body.scrollTop > 50) {
-            setScrolled(true)
-            return
-        }
+  const isBrowser = React.useMemo(() => typeof document !== "undefined", []);
 
-        setScrolled(false)
-    }, [setScrolled])
+  const onScroll = React.useCallback(() => {
+    if (isBrowser && document.body.scrollTop > 50) {
+      setScrolled(true);
+      return;
+    }
 
-    React.useEffect(() => {
-        if (isBrowser) {
-            document.addEventListener("scroll", onScroll)
-        }
-    }, [])
+    setScrolled(false);
+  }, [setScrolled]);
 
-    React.useEffect(() => {
-        if (isBrowser) {
-            document.body.scrollTo({top: 0, left: 0})
-        }
-    }, [props.location.pathname])
+  React.useEffect(() => {
+    if (isBrowser) {
+      document.addEventListener("scroll", onScroll);
+    }
+  }, []);
 
-    return <div className="shell">
-        <Helmet>
-            <title>Nathan Russell</title>
-        </Helmet>
-        <div className="header" data-scrolled={scrolled}>
-            <h1>
-                <i className="fas fa-user"></i>
-                Nathan Russell
-            </h1>
-        </div>
-        {props.children}
+  React.useEffect(() => {
+    if (isBrowser) {
+      document.body.scrollTo({ top: 0, left: 0 });
+    }
+  }, [props.location.pathname]);
+
+  return (
+    <div className="shell">
+      <Helmet>
+        <title>Nathan Russell</title>
+      </Helmet>
+      <div className="header" data-scrolled={scrolled}>
+        <h1>
+          <Logo />
+          Nathan Russell
+        </h1>
+      </div>
+      {props.children}
     </div>
-})
+  );
+});

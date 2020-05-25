@@ -1,0 +1,43 @@
+@import "../theme/variables.scss";
+
+.slide-show {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  button {
+    cursor: pointer;
+    padding: $spacing-medium;
+    margin: 0;
+    box-shadow: $box-shadow-standard;
+    border: $spacing-extra-small solid;
+    height: calc(#{$font-size-extra-large} + #{$spacing-medium} * 2);
+    width: calc(#{$font-size-extra-large} + #{$spacing-medium} * 2);
+    flex-shrink: 0;
+    > i {
+      font-size: $font-size-large;
+    }
+
+    &:first-child {
+      margin-right: $spacing-large;
+    }
+    &:last-child {
+      margin-left: $spacing-large;
+    }
+  }
+
+  .slide {
+    box-shadow: $box-shadow-standard;
+    flex-grow: 1;
+    .slide-image {
+      height: auto;
+      width: 100%;
+      object-fit: contain;
+      background-color: white;
+    }
+    .slide-caption {
+      padding: $spacing-medium;
+      font-weight: 700;
+    }
+  }
+}

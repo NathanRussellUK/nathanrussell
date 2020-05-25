@@ -1,43 +1,42 @@
-@import '../../../theme/variables.scss';
+@import "../../../theme/variables.scss";
 
 .article {
-    max-width: 1024px;
-    padding: $spacing-extra-large;
-    margin: auto;
+  max-width: 1024px;
+  padding: $spacing-extra-large;
+  margin: auto;
 
-    .article-meta {
-        text-align: center;
-        font-size: $font-size-medium;
-        font-style: italic;
+  .article-meta {
+    text-align: center;
+    font-size: $font-size-medium;
+    font-style: italic;
 
-        margin-bottom: $spacing-extra-large;
-    }
+    margin-bottom: $spacing-extra-large;
+  }
 
-    img {
-        float: right;
-        height: 400px;
-        object-fit: contain;
-        margin-left: $spacing-extra-large;
-        margin-bottom: $spacing-extra-large;
-        max-width: 100%;
+  img {
+    float: right;
+    height: 400px;
+    object-fit: contain;
+    margin-left: $spacing-extra-large;
+    margin-bottom: $spacing-extra-large;
+    max-width: 100%;
 
-        animation: rotate-in 1.25s, fade-in 1.25s;
-        animation-fill-mode: forwards;
-    }
+    animation: rotate-in 1.25s, fade-in 1.25s;
+    animation-fill-mode: forwards;
+  }
 
-    table {
-        margin-left: auto;
-        margin-right: auto;
+  table {
+    margin: $spacing-extra-large auto;
 
-        animation: rotate-in 1.25s, fade-in 1.25s;
-        animation-fill-mode: forwards;
-    }
+    animation: rotate-in 1.25s, fade-in 1.25s;
+    animation-fill-mode: forwards;
+  }
 }
 
 @media (max-width: 950px) {
-    .article img {
-        float: none;
-        margin: $spacing-extra-large auto;
-        display: block;
-    }
+  .article img {
+    float: none;
+    margin: $spacing-extra-large auto;
+    display: block;
+  }
 }
