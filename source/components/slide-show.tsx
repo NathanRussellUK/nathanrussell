@@ -3,15 +3,19 @@ import * as React from "react";
 import "./slide-show.scss";
 import { useStages } from "../hooks/stages";
 
+export type SlideDetails = {
+  caption: string;
+  image: { src: string; alt: string };
+  id: string;
+};
+
 namespace Slide {
-  export type Props = {
-    caption: string;
-    image: { src: string; alt: string };
-    id: string;
+  export type Props = SlideDetails & {
+    active: boolean;
   };
 
   export const Component: React.FC<Props> = (props) => (
-    <div className={`slide slide-${props.id}`}>
+    <div className={`slide slide-${props.id}`} data-active={props.active}>
       <img
         className="slide-image"
         src={props.image.src}
@@ -25,12 +29,22 @@ namespace Slide {
 export namespace SlideShow {
   export type Props = {
     className?: string;
-    slides: Slide.Props[];
+    slides: SlideDetails[];
   };
   export const Component: React.FC<Props> = (props) => {
     const { goToPreviousStage, goToNextStage, currentStage } = useStages(
       props.slides
     );
+
+    const slides = React.useMemo(() => {
+      return props.slides.map((slide) => (
+        <Slide.Component
+          {...slide}
+          key={slide.id}
+          active={slide.id === currentStage.id}
+        />
+      ));
+    }, [props.slides, currentStage]);
 
     return (
       <div
@@ -39,7 +53,7 @@ export namespace SlideShow {
         <button onClick={goToPreviousStage} aria-label="Previous">
           <i className="fas fa-chevron-left"></i>
         </button>
-        <Slide.Component {...currentStage} key={currentStage.id} />
+        <div className="slide-container">{slides}</div>
         <button onClick={goToNextStage} aria-label="Next">
           <i className="fas fa-chevron-right"></i>
         </button>

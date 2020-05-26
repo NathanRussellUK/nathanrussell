@@ -1,5 +1,7 @@
 import * as React from "react";
 
+type Direction = "forward" | "backward";
+
 export const useStages = <Stage>(stages: Stage[]) => {
   const [currentIndex, goToStage] = React.useState(0);
 

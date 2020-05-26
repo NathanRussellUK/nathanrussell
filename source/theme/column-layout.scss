@@ -1,48 +1,65 @@
 @import "./variables.scss";
 
 .column-layout {
-    $min-column-height: 500px;
+  $min-column-height: 500px;
 
-    background-color: $light-gray;
+  background-color: $light-gray;
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 100%;
+  min-height: $min-column-height;
+
+  .row {
     width: 100%;
-    min-height: $min-column-height;
-
-    .column {
-        background-color: white;
-
-        flex-basis: 50%;
-        flex-grow: 0;
-        flex-shrink: 0;
-
-        min-height: $min-column-height;
-        padding: $spacing-extra-large;
-
-        overflow: hidden;
-        
-        &.full-width {
-            flex-basis: 100%;
-        }
+    display: flex;
+    &:nth-child(odd) {
+      flex-direction: row-reverse;
     }
+    &:nth-child(even) {
+      flex-direction: row;
+    }
+    @media (max-width: 950px) {
+      &:nth-child(odd),
+      &:nth-child(even) {
+        flex-direction: column-reverse;
+      }
+    }
+  }
+
+  .column {
+    background-color: white;
+
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    min-height: $min-column-height;
+    padding: $spacing-extra-large;
+
+    overflow: hidden;
+
+    &.full-width {
+      flex-basis: 100%;
+    }
+  }
 }
 
 @media (max-width: 950px) {
-    .column-layout {
-        flex-direction: column;
-        flex-wrap: nowrap;
+  .column-layout {
+    flex-direction: column;
+    flex-wrap: nowrap;
 
-        .column {
-            flex-basis: auto;
+    .column {
+      flex-basis: auto;
 
-            padding: $spacing-large;
+      padding: $spacing-large;
 
-            width: 100%;
-            height: unset;
-            max-height: unset;
-        }
+      width: 100%;
+      height: unset;
+      max-height: unset;
     }
+  }
 }

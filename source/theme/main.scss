@@ -19,6 +19,14 @@ body {
   min-height: 100%;
 }
 
+@media (max-width: 950px) {
+  body,
+  #root {
+    min-height: 100%;
+    height: auto;
+  }
+}
+
 p,
 li {
   font-size: $font-size-large;
@@ -81,13 +89,5 @@ table {
       padding: $spacing-medium;
       font-size: $font-size-small;
     }
-  }
-}
-
-@media (max-width: 950px) {
-  body,
-  #root {
-    min-height: 100%;
-    height: auto;
   }
 }
