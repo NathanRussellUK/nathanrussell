@@ -9,7 +9,11 @@
     cursor: pointer;
     padding: $spacing-medium;
     margin: 0;
+
     border: $spacing-extra-small solid;
+    transition-property: border-color, background-color, color;
+    transition-duration: 0.1s;
+
     height: calc(#{$font-size-extra-large} + #{$spacing-medium} * 2);
     width: calc(#{$font-size-extra-large} + #{$spacing-medium} * 2);
     flex-shrink: 0;
