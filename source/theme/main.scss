@@ -3,93 +3,91 @@
 @import "./variables.scss";
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    font-family: 'Fira Sans', sans-serif;
-    font-weight: 300;
-    margin: 0;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 300;
+  margin: 0;
 }
 
 #root {
-    min-height: 100%;
+  min-height: 100%;
 }
 
-p, li {
-    font-size: $font-size-large;
-    margin: 0;
-    margin-bottom: $spacing-large;
+p,
+li {
+  font-size: $font-size-large;
+  margin: 0;
+  margin-bottom: $spacing-large;
 }
 
 h2 {
-    font-size: $font-size-extra-large;
-    font-weight: bold;
-    text-align: center;
-    margin: 0;
-    margin-bottom: $spacing-large;
+  font-size: $font-size-extra-large;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  margin-bottom: $spacing-large;
 }
 
 a.inline-link {
-    color: #138CBF;
-    text-decoration: underline;
-    font-weight: 400;
+  color: $green;
+  text-decoration: underline;
+  font-weight: 400;
 }
 
 .spider-text {
-    font-size: $font-size-small;
-    margin: 0;
-    margin-top: $spacing-large;
-    margin-bottom: $spacing-large;
+  font-size: $font-size-small;
+  margin: 0;
+  margin-top: $spacing-large;
+  margin-bottom: $spacing-large;
 }
 
 table {
-    border-collapse: collapse;
-    font-size: $font-size-large;
-    margin-bottom: $spacing-large;
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: $font-size-large;
+  margin-bottom: $spacing-large;
 
-    thead {
-        font-weight: 700;
-    }
+  thead {
+    font-weight: 700;
+    border-bottom: $spacing-extra-small solid $green;
+    border-top: $spacing-extra-small solid $green;
+  }
 
-    tbody {
-        font-weight: 300;
-    }
+  tbody {
+    font-weight: 300;
+  }
 
+  td {
+    padding: $spacing-large;
+  }
+
+  tr.emphasis {
+    font-weight: 400;
+  }
+
+  tr:last-of-type {
+    border-bottom: $spacing-extra-small solid $green;
+  }
+
+  @media (max-width: 950px) {
     td {
-        padding: $spacing-medium;
+      padding: $spacing-medium;
+      font-size: $font-size-small;
     }
-
-    tr.emphasis {
-        font-weight: 400;
-    }
-}
-
-// move this into a politics style sheet!
-.politics + * {
-    table {        
-        thead {
-            background-color: #BF1D3D;
-            color: #FFFFFF;
-        }
-
-        tbody {
-            tr {
-                &:nth-child(even) {
-                    background-color: #FFF2F5;
-                }
-            }
-        }
-    }
+  }
 }
 
 @media (max-width: 950px) {
-    body,
-    #root {
-        min-height: 100%;
-        height: auto;
-    }
+  body,
+  #root {
+    min-height: 100%;
+    height: auto;
+  }
 }

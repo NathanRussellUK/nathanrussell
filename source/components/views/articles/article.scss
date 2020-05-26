@@ -34,9 +34,12 @@
 }
 
 @media (max-width: 950px) {
-  .article img {
-    float: none;
-    margin: $spacing-extra-large auto;
-    display: block;
+  .article {
+    padding: $spacing-large;
+    img {
+      float: none;
+      margin: $spacing-extra-large auto;
+      display: block;
+    }
   }
 }
