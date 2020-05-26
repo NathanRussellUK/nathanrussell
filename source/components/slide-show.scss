@@ -17,6 +17,7 @@
     height: calc(#{$font-size-extra-large} + #{$spacing-medium} * 2);
     width: calc(#{$font-size-extra-large} + #{$spacing-medium} * 2);
     flex-shrink: 0;
+
     > i {
       font-size: $font-size-large;
     }
@@ -66,10 +67,15 @@
       justify-content: center;
 
       .slide-image {
+        flex-grow: 1;
         width: 100%;
         min-height: 0;
+
         object-fit: contain;
-        background-color: white;
+
+        $check-size: $spacing-medium;
+
+        @include checkers($spacing-medium, #dddddd, #ffffff);
       }
       .slide-caption {
         padding: $spacing-medium;
