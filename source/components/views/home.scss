@@ -1,6 +1,7 @@
 @import "../../theme/variables.scss";
 
 .row {
+  width: 100%;
   display: flex;
   &:nth-child(odd) {
     flex-direction: row-reverse;
