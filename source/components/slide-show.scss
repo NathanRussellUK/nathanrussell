@@ -56,6 +56,7 @@
       height: 100%;
       width: 100%;
 
+      pointer-events: none;
       transform: rotateY(-180deg);
       opacity: 0;
 
@@ -89,8 +90,10 @@
     }
 
     .slide[data-active="true"] {
+      pointer-events: all;
       transform: rotateY(0deg);
       opacity: 1;
+      z-index: 1;
     }
   }
 }

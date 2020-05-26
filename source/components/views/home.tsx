@@ -80,10 +80,11 @@ export const Home = () => (
           In the 3+ years I've been working at Rocketmakers, our emphasis has
           always been on innovation and code quality.
         </p>
-        <p>...</p>
         <p>
-          I have also played a proactive role in quality assurance, helping to
-          define and document testing and code review processes.
+          I have lead the development of key components of our company-wide
+          stack, including in state management and asynchronous flows on the
+          client. I have also played a proactive role in quality assurance,
+          helping to define and document testing and code review processes.
         </p>
       </div>
       <div className="column feature rocketmakers">
