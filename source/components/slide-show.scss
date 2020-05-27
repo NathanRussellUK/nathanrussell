@@ -97,6 +97,11 @@
         font-weight: 700;
         text-align: center;
 
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
         @media (max-width: 950px) {
           font-size: $font-size-small;
         }
