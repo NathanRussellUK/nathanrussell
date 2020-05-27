@@ -11,11 +11,17 @@ export type SlideDetails = {
 
 namespace Slide {
   export type Props = SlideDetails & {
-    active: boolean;
+    state?: "previous" | "current" | "next";
+    className?: string;
   };
 
   export const Component: React.FC<Props> = (props) => (
-    <div className={`slide slide-${props.id}`} data-active={props.active}>
+    <div
+      className={`slide slide-${props.id}${
+        props.className ? " " + props.className : ""
+      }`}
+      data-state={props.state}
+    >
       <img
         className="slide-image"
         src={props.image.src}
@@ -32,32 +38,51 @@ export namespace SlideShow {
     slides: SlideDetails[];
   };
   export const Component: React.FC<Props> = (props) => {
-    const { goToPreviousStage, goToNextStage, currentStage } = useStages(
-      props.slides
-    );
+    // slide transition duration (s)
+    const duration = 0.6;
 
-    const slides = React.useMemo(() => {
-      return props.slides.map((slide) => (
-        <Slide.Component
-          {...slide}
-          key={slide.id}
-          active={slide.id === currentStage.id}
-        />
-      ));
-    }, [props.slides, currentStage]);
+    const {
+      goToPreviousStage,
+      goToNextStage,
+      states,
+      direction,
+      isPending,
+    } = useStages(props.slides, duration);
+
+    const slides = props.slides.map((slide, index) => (
+      <Slide.Component {...slide} state={states[index]} key={slide.id} />
+    ));
 
     return (
-      <div
-        className={`slide-show${props.className ? " " + props.className : ""}`}
-      >
-        <button onClick={goToPreviousStage} aria-label="Previous">
-          <i className="fas fa-chevron-left"></i>
-        </button>
-        <div className="slide-container">{slides}</div>
-        <button onClick={goToNextStage} aria-label="Next">
-          <i className="fas fa-chevron-right"></i>
-        </button>
-      </div>
+      <>
+        <div
+          className={`slide-show${
+            props.className ? " " + props.className : ""
+          }`}
+          data-direction={direction}
+        >
+          <button
+            onClick={goToPreviousStage}
+            aria-label="Previous"
+            disabled={isPending}
+          >
+            <i className="fas fa-chevron-left"></i>
+          </button>
+          <div className="slide-container">{slides}</div>
+          <button
+            onClick={goToNextStage}
+            aria-label="Next"
+            disabled={isPending}
+          >
+            <i className="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <style>
+          {`.slide-show .slide {
+      --duration: ${duration}s
+              }`}
+        </style>
+      </>
     );
   };
 }

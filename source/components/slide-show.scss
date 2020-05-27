@@ -35,6 +35,13 @@
       margin-left: $spacing-large;
     }
 
+    &:disabled {
+      cursor: wait !important;
+      border-color: #888888 !important;
+      color: #888888 !important;
+      background-color: #ffffff !important;
+    }
+
     @media (max-width: 950px) {
       &:first-child {
         margin-right: $spacing-small;
@@ -54,6 +61,8 @@
 
     flex-grow: 1;
 
+    overflow: hidden;
+
     .slide {
       position: absolute;
       top: 0;
@@ -63,11 +72,10 @@
       width: 100%;
 
       pointer-events: none;
-      transform: rotateY(-180deg);
-      opacity: 0;
 
-      transition-duration: 0.6s;
-      transition-property: transform, opacity;
+      // to do - turn transitions to animations
+      opacity: 0;
+      transition: var(--duration) transform;
 
       display: flex;
       flex-direction: column;
@@ -93,13 +101,37 @@
           font-size: $font-size-small;
         }
       }
-    }
 
-    .slide[data-active="true"] {
-      pointer-events: all;
-      transform: rotateY(0deg);
-      opacity: 1;
-      z-index: 1;
+      &[data-state="previous"],
+      &[data-state="current"],
+      &[data-state="next"] {
+        opacity: 1;
+      }
+
+      &[data-state="previous"] {
+        transform: translateX(-100%);
+      }
+
+      &[data-state="current"] {
+        pointer-events: all;
+        transform: translateX(0%);
+      }
+
+      &[data-state="next"] {
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  &[data-direction="forward"] {
+    .slide[data-state="next"] {
+      opacity: 0;
+    }
+  }
+
+  &[data-direction="backward"] {
+    .slide[data-state="previous"] {
+      opacity: 0;
     }
   }
 }

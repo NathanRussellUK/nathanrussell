@@ -31,12 +31,17 @@ const RocketmakersSlides: SlideShow.Props["slides"] = [
   {
     caption: "Pure Planet  -  iOS & Android apps, marketing site, APIs",
     image: { src: "/images/slide_rm_01.png", alt: "Pure Planet" },
-    id: "pure-planet",
+    id: "pure-planet2",
   },
   {
     caption: "Fireball - Web app",
     image: { src: "/images/slide_rm_02.png", alt: "Fireball" },
     id: "fireball",
+  },
+  {
+    caption: "Pure Planet  -  iOS & Android apps, marketing site, APIs",
+    image: { src: "/images/slide_rm_01.png", alt: "Pure Planet" },
+    id: "pure-planet",
   },
   {
     caption: "PDMS Athletes - iOS & Android Apps, API",
