@@ -101,6 +101,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        flex-shrink: 0;
 
         @media (max-width: 950px) {
           font-size: $font-size-small;
