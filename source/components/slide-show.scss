@@ -5,6 +5,12 @@
   flex-direction: row;
   align-items: center;
 
+  padding: $spacing-extra-large;
+
+  @media (max-width: 950px) {
+    padding: $spacing-extra-large $spacing-small;
+  }
+
   button {
     cursor: pointer;
     padding: $spacing-medium;
