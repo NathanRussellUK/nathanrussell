@@ -35,7 +35,15 @@ li {
 }
 
 h2 {
-  font-size: $font-size-extra-large;
+  font-size: $font-size-xx-large;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  margin-bottom: $spacing-large;
+}
+
+h3 {
+  font-size: $font-size-x-large;
   font-weight: bold;
   text-align: center;
   margin: 0;
@@ -64,8 +72,8 @@ table {
 
   thead {
     font-weight: 700;
-    border-bottom: $spacing-extra-small solid $green;
-    border-top: $spacing-extra-small solid $green;
+    border-bottom: $spacing-x-small solid $green;
+    border-top: $spacing-x-small solid $green;
   }
 
   tbody {
@@ -81,7 +89,7 @@ table {
   }
 
   tr:last-of-type {
-    border-bottom: $spacing-extra-small solid $green;
+    border-bottom: $spacing-x-small solid $green;
   }
 
   @media (max-width: 950px) {

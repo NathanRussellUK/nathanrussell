@@ -25,25 +25,26 @@ $sr-red-extra-light: hsl(9, 85%, 90%);
 
 // Spacing
 
-$spacing-extra-large: 50px;
+$spacing-x-large: 50px;
 $spacing-large: 20px;
 $spacing-medium: 10px;
 $spacing-small: 5px;
-$spacing-extra-small: 1px;
+$spacing-x-small: 1px;
 
 // Font sizes
 
 $font-size-small: 0.9rem;
 $font-size-medium: 1rem;
 $font-size-large: 1.3rem;
-$font-size-extra-large: 1.5rem;
+$font-size-x-large: 1.5rem;
+$font-size-xx-large: 2rem;
 
 // Misc
 
 $header-height: 50px;
 
-$box-shadow-standard: -$spacing-extra-small $spacing-extra-small $spacing-small
-  0 rgba(0, 0, 0, 0.25);
+$box-shadow-standard: -$spacing-x-small $spacing-x-small $spacing-small 0
+  rgba(0, 0, 0, 0.25);
 
 @mixin checkers($size: $spacing-medium, $color1: #eeeeee, $color2: #ffffff) {
   background-position: 0px 0px, $size $size;

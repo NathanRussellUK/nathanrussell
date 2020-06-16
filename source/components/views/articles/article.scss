@@ -2,7 +2,7 @@
 
 .article {
   max-width: 1024px;
-  padding: $spacing-extra-large;
+  padding: $spacing-x-large;
   margin: auto;
 
   .article-meta {
@@ -10,15 +10,15 @@
     font-size: $font-size-medium;
     font-style: italic;
 
-    margin-bottom: $spacing-extra-large;
+    margin-bottom: $spacing-x-large;
   }
 
   img {
     float: right;
     height: 400px;
     object-fit: contain;
-    margin-left: $spacing-extra-large;
-    margin-bottom: $spacing-extra-large;
+    margin-left: $spacing-x-large;
+    margin-bottom: $spacing-x-large;
     max-width: 100%;
 
     animation: rotate-in 1.25s, fade-in 1.25s;
@@ -26,7 +26,7 @@
   }
 
   table {
-    margin: $spacing-extra-large auto;
+    margin: $spacing-x-large auto;
 
     animation: rotate-in 1.25s, fade-in 1.25s;
     animation-fill-mode: forwards;
@@ -38,7 +38,7 @@
     padding: $spacing-large;
     img {
       float: none;
-      margin: $spacing-extra-large auto;
+      margin: $spacing-x-large auto;
       display: block;
     }
   }

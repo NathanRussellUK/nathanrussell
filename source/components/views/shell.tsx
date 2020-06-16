@@ -39,12 +39,12 @@ export const Shell = withRouter((props) => {
   return (
     <div className="shell">
       <Helmet>
-        <title>Nathan Russell</title>
+        <title>Sea Green Cube | Nathan Russell</title>
       </Helmet>
       <div className="header" data-scrolled={scrolled}>
         <h1>
           <Logo />
-          Nathan Russell
+          Sea Green Cube
         </h1>
       </div>
       {props.children}

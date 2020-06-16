@@ -57,6 +57,7 @@ export const Home = () => (
         <Features features={featureList} />
       </div>
       <div className="column" id="intro">
+        <h2>Nathan Russell</h2>
         <p>
           A professional software/Web developer, passionate about working with
           the latest and greatest technology.
@@ -76,10 +77,10 @@ export const Home = () => (
           className="employer-logo"
           src="/images/rocketmakers.svg"
         />
-        <h2>
+        <h3>
           <i className="fas fa-briefcase"></i>
           Developer
-        </h2>
+        </h3>
         <p className="dates">2016 - current</p>
         <p>
           In the 3+ years I've been working at Rocketmakers, our emphasis has
@@ -103,10 +104,10 @@ export const Home = () => (
           className="employer-logo"
           src="/images/spicerack.png"
         />
-        <h2>
+        <h3>
           <i className="fas fa-briefcase"></i>
           Apprentice Developer
-        </h2>
+        </h3>
         <p className="dates">2015 - 2016</p>
         <p>
           During my apprenticeship, my work required good communication, working
@@ -125,7 +126,7 @@ export const Home = () => (
       </div>
     </div>
     <div className="column full-width" id="articles">
-      <h2>Articles</h2>
+      <h3>Articles</h3>
       <BlockLinks blockLinks={articlesList} />
     </div>
   </div>

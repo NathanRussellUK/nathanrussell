@@ -5,10 +5,10 @@
   flex-direction: row;
   align-items: center;
 
-  padding: $spacing-extra-large;
+  padding: $spacing-x-large;
 
   @media (max-width: 950px) {
-    padding: $spacing-extra-large $spacing-small;
+    padding: $spacing-x-large $spacing-small;
   }
 
   button {
@@ -16,12 +16,12 @@
     padding: $spacing-medium;
     margin: 0;
 
-    border: $spacing-extra-small solid;
+    border: $spacing-x-small solid;
     transition-property: border-color, background-color, color;
     transition-duration: 0.1s;
 
-    height: calc(#{$font-size-extra-large} + #{$spacing-medium} * 2);
-    width: calc(#{$font-size-extra-large} + #{$spacing-medium} * 2);
+    height: calc(#{$font-size-x-large} + #{$spacing-medium} * 2);
+    width: calc(#{$font-size-x-large} + #{$spacing-medium} * 2);
     flex-shrink: 0;
 
     > i {
